@@ -1,0 +1,167 @@
+/* ============================================================
+   Manual de Prácticas Profesionales ITM — Ruta Gamificada
+   Tokens + base. Tipografía Montserrat, paleta institucional.
+   ============================================================ */
+
+:root {
+  /* ---- Paleta institucional por facultad ---- */
+  /* Artes y Humanidades */
+  --artes-1: #661081;
+  --artes-2: #910581;
+  --artes-3: #9C095D;
+  /* Ingenierías */
+  --ing-1: #102D69;
+  --ing-2: #00A0B7;
+  --ing-3: #56ACDE;
+  /* Ciencias Exactas y Aplicadas */
+  --cea-1: #009030;
+  --cea-2: #98BF13;
+  --cea-3: #D1DD72;
+  /* Ciencias Económicas y Administrativas */
+  --eco-1: #F19800;
+  --eco-2: #F6B63E;
+  --eco-3: #F9C873;
+
+  /* ---- Neutros / superficie ---- */
+  --bg-deep: #0a1228;          /* fondo inmersivo del mapa */
+  --bg-deep-2: #0f1a3a;
+  --ink: #16203a;              /* texto sobre claro */
+  --ink-soft: #4a5675;
+  --paper: #ffffff;
+  --paper-2: #f4f6fb;
+  --line: #e3e8f2;
+  --gold: #f4c84a;             /* acento de logro / XP */
+  --gold-deep: #d9a520;
+
+  --radius: 18px;
+  --radius-sm: 12px;
+  --shadow-1: 0 2px 8px rgba(16,32,80,.08);
+  --shadow-2: 0 14px 40px rgba(16,32,80,.16);
+  --shadow-glow: 0 0 0 6px rgba(255,255,255,.06);
+
+  --font: "Montserrat", system-ui, -apple-system, sans-serif;
+
+  /* Variables de módulo, sobreescritas por JS via --m-* */
+  --m-1: var(--ing-1);
+  --m-2: var(--ing-2);
+  --m-soft: #eef3fb;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--bg-deep);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#root { min-height: 100vh; }
+
+h1, h2, h3, h4 { margin: 0; line-height: 1.08; letter-spacing: -0.01em; }
+p { margin: 0; line-height: 1.55; }
+button { font-family: inherit; cursor: pointer; border: none; }
+input { font-family: inherit; }
+
+/* ---------- App stage ---------- */
+.stage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Reusable buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 15px 28px;
+  border-radius: 999px;
+  transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+  white-space: nowrap;
+}
+.btn:active { transform: translateY(1px) scale(.99); }
+.btn-primary {
+  color: #fff;
+  background: linear-gradient(135deg, var(--m-1), var(--m-2));
+  box-shadow: 0 10px 26px -8px var(--m-1);
+}
+.btn-primary:hover { filter: brightness(1.07); transform: translateY(-2px); box-shadow: 0 16px 34px -10px var(--m-1); }
+.btn-primary:disabled { filter: grayscale(.6) brightness(.9); cursor: not-allowed; opacity: .6; transform: none; box-shadow: none; }
+.btn-ghost {
+  color: var(--m-1);
+  background: var(--m-soft);
+}
+.btn-ghost:hover { filter: brightness(.97); }
+.btn-light {
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid var(--line);
+}
+.btn-light:hover { border-color: var(--m-2); color: var(--m-1); }
+
+/* ---------- Generic card ---------- */
+.card {
+  background: var(--paper);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-2);
+}
+
+/* ---------- Pill / chip ---------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 13px;
+  border-radius: 999px;
+  letter-spacing: .02em;
+}
+
+/* ---------- Scroll niceties ---------- */
+.scroll-area { overflow-y: auto; }
+.scroll-area::-webkit-scrollbar { width: 10px; }
+.scroll-area::-webkit-scrollbar-thumb { background: rgba(0,0,0,.18); border-radius: 10px; border: 3px solid transparent; background-clip: content-box; }
+
+/* ---------- Animations ---------- */
+@keyframes floatUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes popIn { 0% { opacity: 0; transform: scale(.7); } 60% { opacity: 1; transform: scale(1.08); } 100% { transform: scale(1); } }
+@keyframes pulseRing {
+  0% { box-shadow: 0 0 0 0 rgba(255,255,255,.55); }
+  70% { box-shadow: 0 0 0 18px rgba(255,255,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+}
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+@keyframes spinIn { from { transform: rotate(-30deg) scale(.5); opacity: 0; } to { transform: rotate(0) scale(1); opacity: 1; } }
+@keyframes confettiFall {
+  to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+@keyframes wiggle { 0%,100%{transform:rotate(0)} 25%{transform:rotate(-6deg)} 75%{transform:rotate(6deg)} }
+
+.fade-up { animation: floatUp .5s cubic-bezier(.2,.7,.3,1) both; }
+
+/* ---------- Reveal: entrada basada en transición (segura para capturas) ---------- */
+.rv { opacity: 0; transform: translateY(16px); transition: opacity .45s ease, transform .55s cubic-bezier(.2,.8,.2,1); }
+.rv.rv-pop { transform: scale(.82); }
+.rv.rv-spin { transform: rotate(-12deg) scale(.66); }
+.rv.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  .rv { opacity: 1 !important; transform: none !important; }
+}
+
+/* ---------- Print (certificate) ---------- */
+@media print {
+  body { background: #fff; }
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+  @page { size: landscape; margin: 0; }
+}
