@@ -5,6 +5,7 @@ const { useState, useEffect } = React;
 function Welcome({ modules, onStart, savedName, hasProgress, onContinue, completedCount }) {
   const [name, setName] = useState(savedName || '');
   const [mounted, setMounted] = useState(false);
+  const [showPres, setShowPres] = useState(false);
   useEffect(() => { const t = setTimeout(() => setMounted(true), 80); return () => clearTimeout(t); }, []);
   const valid = name.trim().length >= 2;
 
@@ -176,6 +177,25 @@ function Welcome({ modules, onStart, savedName, hasProgress, onContinue, complet
                   <Icon name="play" size={16} /> Comenzar
                 </button>
               </div>
+              {/* Botón presentación ejecutiva */}
+              <button
+                onClick={() => setShowPres(true)}
+                style={{
+                  marginTop: 14, display: 'inline-flex', alignItems: 'center', gap: 9,
+                  background: 'linear-gradient(135deg,rgba(16,45,105,0.7),rgba(0,160,183,0.5))',
+                  border: '1.5px solid rgba(86,172,222,0.45)',
+                  color: '#fff', fontWeight: 700, fontSize: 14,
+                  padding: '11px 20px', borderRadius: 12, cursor: 'pointer',
+                  transition: 'filter .18s'
+                }}
+                onMouseEnter={e => e.currentTarget.style.filter = 'brightness(1.15)'}
+                onMouseLeave={e => e.currentTarget.style.filter = ''}
+              >
+                <Icon name="sparkle" size={16} style={{ color: 'var(--gold)' }} />
+                Ver Presentación del Manual
+                <Icon name="arrowR" size={14} style={{ opacity: 0.7 }} />
+              </button>
+
               {/* Botón ver manual */}
               <a
                 href="https://heyzine.com/flip-book/d912237a0e.html"
@@ -271,6 +291,9 @@ function Welcome({ modules, onStart, savedName, hasProgress, onContinue, complet
           Oficina de Prácticas Profesionales ITM
         </span>
       </footer>
+
+      {/* Modal: Presentación ejecutiva */}
+      {showPres && <ExecutivePresentation modules={modules} onClose={() => setShowPres(false)} />}
     </div>
   );
 }
