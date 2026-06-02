@@ -43,7 +43,7 @@ function ModuleFlow({ module, quiz, alreadyDone, onComplete, onExit }) {
 
         <main style={{ position: 'relative', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'clamp(16px,4vw,40px)' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'auto minmax(0,1fr)', gap: 'clamp(24px,5vw,60px)', alignItems: 'center', maxWidth: 1000 }} className="intro-grid">
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14 }}>
+            <div className="intro-badge-col" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14 }}>
               <Reveal variant="spin"><Badge module={module} size={160} state="earned" /></Reveal>
             </div>
             <div>

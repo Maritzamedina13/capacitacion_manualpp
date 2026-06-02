@@ -150,7 +150,7 @@ function Welcome({ modules, onStart, savedName, hasProgress, onContinue, complet
               }}>
                 Tu nombre para comenzar
               </label>
-              <div style={{
+              <div className="welcome-form-row" style={{
                 display: 'flex', gap: 8, alignItems: 'center',
                 background: 'rgba(255,255,255,0.06)',
                 border: '1.5px solid rgba(255,255,255,0.14)',
@@ -176,16 +176,37 @@ function Welcome({ modules, onStart, savedName, hasProgress, onContinue, complet
                   <Icon name="play" size={16} /> Comenzar
                 </button>
               </div>
+              {/* Botón ver manual */}
+              <a
+                href="https://heyzine.com/flip-book/d912237a0e.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  marginTop: 14, display: 'inline-flex', alignItems: 'center', gap: 9,
+                  background: 'rgba(255,255,255,0.08)',
+                  border: '1.5px solid rgba(255,255,255,0.22)',
+                  color: 'rgba(255,255,255,0.88)', fontWeight: 700, fontSize: 14,
+                  padding: '11px 20px', borderRadius: 12, textDecoration: 'none',
+                  transition: 'background .18s, border-color .18s'
+                }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.45)'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.22)'; }}
+              >
+                <Icon name="book" size={16} style={{ color: 'var(--ing-3)' }} />
+                Ver Manual de Prácticas Profesionales ITM
+                <Icon name="arrowR" size={14} style={{ opacity: 0.6 }} />
+              </a>
+
               {hasProgress && (
                 <button
                   onClick={onContinue}
                   style={{
-                    marginTop: 16, background: 'none',
+                    marginTop: 10, background: 'none',
                     color: 'rgba(255,255,255,0.75)', fontWeight: 700, fontSize: 14,
                     display: 'flex', alignItems: 'center', gap: 8, padding: '4px 0'
                   }}
                 >
-                  <Icon name="arrowR" size={15} /> Continuar mi progreso ({completedCount}/6 módulos)
+                  <Icon name="arrowR" size={15} /> Continuar mi progreso ({completedCount}/9 módulos)
                 </button>
               )}
             </div>
@@ -203,17 +224,17 @@ function Welcome({ modules, onStart, savedName, hasProgress, onContinue, complet
                 pointerEvents: 'none'
               }} />
               <div style={{
-                display: 'grid', gridTemplateColumns: 'repeat(2,1fr)',
-                gap: '22px 30px', padding: 12, position: 'relative'
+                display: 'grid', gridTemplateColumns: 'repeat(3,1fr)',
+                gap: '18px 22px', padding: 12, position: 'relative'
               }}>
                 {modules.map((m, i) => (
                   <div key={m.id} style={{
-                    display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
+                    display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
                     opacity: mounted ? 1 : 0,
                     transform: mounted ? 'none' : 'scale(.62) translateY(20px)',
-                    transition: `opacity .5s ease ${i * 90}ms, transform .55s cubic-bezier(.18,.85,.3,1.25) ${i * 90}ms`
+                    transition: `opacity .5s ease ${i * 70}ms, transform .5s cubic-bezier(.18,.85,.3,1.25) ${i * 70}ms`
                   }}>
-                    <Badge module={m} size={96} state={i === 0 ? 'earned' : 'locked'} showNumber={false} />
+                    <Badge module={m} size={82} state={i === 0 ? 'earned' : 'locked'} showNumber={false} />
                     <div style={{ textAlign: 'center' }}>
                       <div style={{
                         color: i === 0 ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.42)',

@@ -3,17 +3,17 @@
    ============================================================ */
 const { useState, useEffect } = React;
 const NODE_POS = [
-  { x: 14, y: 5  },
-  { x: 50, y: 13 },
-  { x: 86, y: 21 },
+  { x: 14, y: 8  },
+  { x: 50, y: 16 },
+  { x: 86, y: 24 },
   { x: 86, y: 40 },
   { x: 50, y: 48 },
   { x: 14, y: 56 },
-  { x: 14, y: 74 },
-  { x: 50, y: 82 },
-  { x: 86, y: 90 },
+  { x: 14, y: 72 },
+  { x: 50, y: 80 },
+  { x: 86, y: 88 },
 ];
-const CERT_POS = { x: 50, y: 97 };
+const CERT_POS = { x: 50, y: 96 };
 
 function buildPath(points) {
   // smooth-ish curve through points in 0-100 space
@@ -98,24 +98,31 @@ function LevelMap({ modules, progress, name, xp, onSelectModule, onCertificate, 
       position: 'relative'
     }}>
 
-      {/* Header */}
-      <header style={{ position: 'relative', padding: 'clamp(16px,2.4vw,26px) clamp(20px,5vw,54px)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20, flexWrap: 'wrap' }}>
+      {/* Header — grid 3 columnas: responsive sin solapamientos */}
+      <header className="map-header" style={{
+        position: 'relative',
+        padding: 'clamp(12px,2.4vw,26px) clamp(16px,5vw,54px)',
+        display: 'grid',
+        gridTemplateColumns: '1fr auto 1fr',
+        alignItems: 'center',
+        gap: '10px 16px'
+      }}>
         {/* Izquierda: XP */}
-        <div style={{ minWidth: 180 }}><XPBar xp={xp} light /></div>
+        <div className="map-xp xp-bar-min" style={{ minWidth: 140 }}><XPBar xp={xp} light /></div>
 
         {/* Centro: logo ITM */}
-        <div style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
+        <div className="map-logo-center" style={{ justifySelf: 'center' }}>
           <ITMMark light />
         </div>
 
         {/* Derecha: usuario */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 9, color: '#fff' }}>
-          <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'linear-gradient(135deg,var(--ing-2),var(--ing-3))', display: 'grid', placeItems: 'center', fontWeight: 800, fontSize: 16 }}>
+        <div className="map-user" style={{ justifySelf: 'end', display: 'flex', alignItems: 'center', gap: 9, color: '#fff' }}>
+          <div style={{ width: 38, height: 38, borderRadius: '50%', background: 'linear-gradient(135deg,var(--ing-2),var(--ing-3))', display: 'grid', placeItems: 'center', fontWeight: 800, fontSize: 15, flexShrink: 0 }}>
             {(name || '?').trim().charAt(0).toUpperCase()}
           </div>
-          <div style={{ lineHeight: 1.15 }}>
-            <div style={{ fontSize: 11, color: 'rgba(255,255,255,.55)', fontWeight: 600 }}>Participante</div>
-            <div style={{ fontSize: 14, fontWeight: 800 }}>{name}</div>
+          <div style={{ lineHeight: 1.15, minWidth: 0 }}>
+            <div style={{ fontSize: 11, color: 'rgba(255,255,255,.55)', fontWeight: 600, whiteSpace: 'nowrap' }}>Participante</div>
+            <div style={{ fontSize: 14, fontWeight: 800, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 140 }}>{name}</div>
           </div>
         </div>
       </header>
@@ -126,8 +133,8 @@ function LevelMap({ modules, progress, name, xp, onSelectModule, onCertificate, 
       </div>
 
       {/* Mapa */}
-      <main style={{ position: 'relative', flex: 1, padding: '8px clamp(16px,4vw,40px) 24px' }}>
-        <div style={{ position: 'relative', width: '100%', maxWidth: 1080, margin: '0 auto', height: 'clamp(700px,82vh,960px)' }}>
+      <main style={{ position: 'relative', flex: 1, padding: 'clamp(56px,7vw,72px) clamp(8px,4vw,40px) 16px', overflow: 'visible' }}>
+        <div style={{ position: 'relative', width: '100%', maxWidth: 1080, margin: '0 auto', height: 'clamp(600px,80vh,920px)', overflow: 'visible' }}>
           {/* camino */}
           <svg viewBox="0 0 100 100" preserveAspectRatio="none" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', zIndex: 1 }}>
             <path d={buildPath(pathPoints)} fill="none" stroke="rgba(255,255,255,.13)" strokeWidth="1.6" strokeLinecap="round" />
@@ -166,7 +173,7 @@ function LevelMap({ modules, progress, name, xp, onSelectModule, onCertificate, 
       </main>
 
       {/* Estante de insignias */}
-      <footer style={{ position: 'relative', padding: '14px clamp(20px,5vw,54px) 22px', borderTop: '1px solid rgba(255,255,255,.08)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
+      <footer className="map-badge-shelf" style={{ position: 'relative', padding: 'clamp(10px,1.8vw,18px) clamp(14px,5vw,54px)', borderTop: '1px solid rgba(255,255,255,.08)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
           <span style={{ color: 'rgba(255,255,255,.6)', fontWeight: 700, fontSize: 12.5, letterSpacing: '.05em', textTransform: 'uppercase' }}>Insignias {completedCount}/{modules.length}</span>
           <div style={{ display: 'flex', gap: 4 }}>

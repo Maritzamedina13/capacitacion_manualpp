@@ -165,3 +165,113 @@ input { font-family: inherit; }
   .print-only { display: block !important; }
   @page { size: landscape; margin: 0; }
 }
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   Breakpoints: 1024 | 768 | 640 | 480 | 360
+   ============================================================ */
+
+/* ---- Tablet (≤ 1024px) ---- */
+@media (max-width: 1024px) {
+  .btn { padding: 13px 22px; font-size: 15px; }
+}
+
+/* ---- Mobile grande (≤ 768px) ---- */
+@media (max-width: 768px) {
+  /* Mapa */
+  .map-header {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: auto auto !important;
+    gap: 10px 16px !important;
+    align-items: center !important;
+  }
+  .map-logo-center {
+    position: static !important;
+    transform: none !important;
+    grid-column: 1 / -1 !important;
+    justify-self: center !important;
+  }
+  .map-user { justify-self: end; }
+  .map-xp   { justify-self: start; }
+
+  /* Certificado */
+  .cert-card {
+    aspect-ratio: unset !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow-y: auto !important;
+  }
+  .cert-badges {
+    gap: 5px !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+
+  /* Módulo intro — una columna */
+  .intro-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ---- Mobile (≤ 640px) ---- */
+@media (max-width: 640px) {
+  /* Bienvenida */
+  .welcome-grid  { grid-template-columns: 1fr !important; }
+  .welcome-badges { display: none !important; }
+  .welcome-stats {
+    flex-direction: row !important;
+    overflow-x: auto !important;
+  }
+
+  /* Form de nombre: botón debajo del input */
+  .welcome-form-row {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  .welcome-form-row .btn {
+    width: 100% !important;
+    border-radius: 14px !important;
+    justify-content: center !important;
+  }
+
+  /* Mapa: insignias en pie con scroll */
+  .map-badge-shelf {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+  .map-badge-shelf-icons { overflow-x: auto; padding-bottom: 4px; }
+
+  /* Botones globales */
+  .btn { font-size: 14px !important; padding: 12px 18px !important; gap: 7px !important; }
+  .btn-block { width: 100% !important; justify-content: center !important; }
+
+  /* Cards: menos padding */
+  .card { padding: 20px 18px !important; }
+}
+
+/* ---- Teléfono pequeño (≤ 480px) ---- */
+@media (max-width: 480px) {
+  /* Header del mapa: logo arriba centrado, luego XP y usuario */
+  .map-header {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Certificado: elimina margen lateral */
+  .cert-wrapper { padding: 10px !important; }
+  .cert-card { margin: 0 !important; border-radius: 8px !important; }
+
+  /* Insignia del certificado: más pequeña */
+  .cert-badges .badge-wrap { transform: scale(0.9); }
+
+  /* Módulo: oculta la insignia grande en intro para ahorrar espacio */
+  .intro-badge-col { display: none !important; }
+
+  /* XP bar: ancho mínimo reducido */
+  .xp-bar-min { min-width: 100px !important; }
+}
+
+/* ---- Pantalla muy pequeña (≤ 360px) ---- */
+@media (max-width: 360px) {
+  .btn { font-size: 13px !important; padding: 11px 14px !important; }
+  .chip { font-size: 11px !important; padding: 5px 10px !important; }
+}

@@ -20,8 +20,8 @@ function Certificate({ modules, name, xp, progress, onExit }) {
         </div>
       </header>
 
-      <main style={{ position: 'relative', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'clamp(14px,3vw,34px)', zIndex: 65 }}>
-        <div id="cert" style={{
+      <main className="cert-wrapper" style={{ position: 'relative', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 'clamp(10px,3vw,34px)', zIndex: 65 }}>
+        <div id="cert" className="cert-card" style={{
           width: '100%', maxWidth: 980, aspectRatio: '1.414 / 1', background: '#fff', borderRadius: 12,
           boxShadow: '0 30px 80px rgba(0,0,0,.45)', position: 'relative', overflow: 'hidden',
           display: 'flex', flexDirection: 'column'
@@ -85,7 +85,7 @@ function Certificate({ modules, name, xp, progress, onExit }) {
             </p>
 
             {/* Insignias de los 9 módulos con nombre */}
-            <div style={{ display: 'flex', gap: 'clamp(4px,1.1vw,12px)', marginTop: '2.5%', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start' }}>
+            <div className="cert-badges" style={{ display: 'flex', gap: 'clamp(4px,1.1vw,12px)', marginTop: '2.5%', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start' }}>
               {modules.map(m => (
                 <div key={m.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
                   <Badge module={m} size={58} state="earned" showNumber={false} />
