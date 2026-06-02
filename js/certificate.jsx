@@ -81,7 +81,7 @@ function Certificate({ modules, name, xp, progress, onExit }) {
               <strong style={{ color: 'var(--ing-1)' }}>{avg}% de aprobación</strong>,
               se acredita este logro formativo y se otorgan las{' '}
               <strong style={{ color: 'var(--ing-1)' }}>{total} insignias de excelencia</strong>{' '}
-              que certifican su preparación integral para el proceso de prácticas profesionales en el ITM.
+              que confirman su preparación integral para el proceso de prácticas profesionales en el ITM.
             </p>
 
             {/* Insignias de los 9 módulos con nombre */}
