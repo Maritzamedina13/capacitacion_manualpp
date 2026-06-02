@@ -45,27 +45,15 @@ function Reveal({ children, delay = 0, variant, style, className = '', onClick, 
   return React.createElement(tag, { className: cls, style, onClick, title }, children);
 }
 
-/* ---------------- Marca ITM (placeholder wordmark) ---------------- */
+/* ---------------- Marca ITM (logo institucional) ---------------- */
 function ITMMark({ light = false, compact = false }) {
-  const fg = light ? '#fff' : 'var(--ink)';
-  const sub = light ? 'rgba(255,255,255,.7)' : 'var(--ink-soft)';
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-      <div style={{
-        width: 46, height: 46, borderRadius: 12,
-        background: light ? 'rgba(255,255,255,.14)' : 'linear-gradient(135deg,var(--ing-1),var(--ing-2))',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        boxShadow: light ? 'inset 0 0 0 1.5px rgba(255,255,255,.35)' : '0 6px 16px -6px var(--ing-1)',
-        flexShrink: 0
-      }}>
-        <span style={{ color: '#fff', fontWeight: 900, fontSize: 19, letterSpacing: '.02em' }}>ITM</span>
-      </div>
-      {!compact && (
-        <div style={{ lineHeight: 1.15, whiteSpace: 'nowrap' }}>
-          <div style={{ fontWeight: 800, fontSize: 14, color: fg, letterSpacing: '.01em' }}>Institución Universitaria ITM</div>
-          <div style={{ fontWeight: 600, fontSize: 11, color: sub, letterSpacing: '.06em', textTransform: 'uppercase' }}>Prácticas Profesionales</div>
-        </div>
-      )}
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <img
+        src={light ? 'recursos/logo-itm-2.png' : 'recursos/logo-itm-1.png'}
+        alt="Institución Universitaria ITM"
+        style={{ height: compact ? 36 : 56, width: 'auto', display: 'block', objectFit: 'contain' }}
+      />
     </div>
   );
 }
@@ -76,25 +64,112 @@ function Badge({ module, size = 96, state = 'earned', showNumber = true }) {
   const c = module.colors;
   const earned = state === 'earned';
   const locked = state === 'locked';
-  const id = 'bg' + module.id + '-' + size;
-  const fill = locked ? '#cfd6e6' : `url(#${id})`;
+  const gid = 'b' + module.id + 'x' + size;
+
   return (
     <div style={{ position: 'relative', width: size, height: size * 1.1, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
-      <svg width={size} height={size * 1.1} viewBox="0 0 100 110" style={{ filter: earned ? `drop-shadow(0 10px 18px ${c.c1}55)` : 'none' }}>
+      <svg
+        width={size} height={size * 1.1} viewBox="0 0 100 110"
+        style={{
+          filter: earned
+            ? `drop-shadow(0 10px 24px ${c.c1}66) drop-shadow(0 2px 8px ${c.c1}44)`
+            : 'none',
+          overflow: 'visible'
+        }}
+      >
         <defs>
-          <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor={c.c2} />
-            <stop offset="1" stopColor={c.c1} />
+          <linearGradient id={`g1-${gid}`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={locked ? '#c8d3e8' : c.c2} />
+            <stop offset="100%" stopColor={locked ? '#8e9ab8' : c.c1} />
           </linearGradient>
+          <linearGradient id={`shine-${gid}`} x1="0.1" y1="0" x2="0.65" y2="1">
+            <stop offset="0%" stopColor="rgba(255,255,255,0.42)" />
+            <stop offset="52%" stopColor="rgba(255,255,255,0.08)" />
+            <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+          </linearGradient>
+          <radialGradient id={`glow-${gid}`} cx="45%" cy="35%" r="58%">
+            <stop offset="0%" stopColor="rgba(255,255,255,0.22)" />
+            <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+          </radialGradient>
         </defs>
-        <polygon points="50,3 92,27 92,83 50,107 8,83 8,27" fill={fill} stroke={locked ? '#b7c0d4' : '#fff'} strokeWidth="3" />
-        <polygon points="50,3 92,27 92,83 50,107 8,83 8,27" fill="none" stroke="rgba(255,255,255,.35)" strokeWidth="1.5" transform="scale(.86) translate(8,9)" />
+
+        {/* Outer dashed ring (earned only) */}
+        {earned && (
+          <polygon
+            points="50,1 95,25 95,85 50,109 5,85 5,25"
+            fill="none"
+            stroke={c.c3 || c.c2}
+            strokeWidth="1.2"
+            strokeDasharray="5 3.5"
+            opacity="0.52"
+          />
+        )}
+
+        {/* Shadow layer */}
+        <polygon
+          points="50,5 90,27.5 90,82.5 50,105 10,82.5 10,27.5"
+          fill={locked ? '#8e9ab8' : c.c1}
+          opacity="0.28"
+          transform="translate(0,3.5)"
+        />
+
+        {/* Main hexagon body */}
+        <polygon points="50,5 90,27.5 90,82.5 50,105 10,82.5 10,27.5" fill={`url(#g1-${gid})`} />
+
+        {/* Radial center glow */}
+        <polygon points="50,5 90,27.5 90,82.5 50,105 10,82.5 10,27.5" fill={`url(#glow-${gid})`} />
+
+        {/* Top-left shine */}
+        <polygon points="50,5 90,27.5 90,82.5 50,105 10,82.5 10,27.5" fill={`url(#shine-${gid})`} />
+
+        {/* Inner border ring */}
+        <polygon
+          points="50,15 82,33 82,77 50,95 18,77 18,33"
+          fill="none"
+          stroke="rgba(255,255,255,0.26)"
+          strokeWidth="1.5"
+        />
+
+        {/* Corner accent dots (earned) */}
+        {earned && [[50,5],[90,27.5],[90,82.5],[50,105],[10,82.5],[10,27.5]].map(([cx, cy], i) => (
+          <circle key={i} cx={cx} cy={cy} r="2.4" fill="rgba(255,255,255,0.65)" />
+        ))}
+
+        {/* Star accent at top (earned) */}
+        {earned && (
+          <path
+            d="M50,18 L51.5,22.2 L56,22.3 L52.5,25 L53.8,29.3 L50,26.8 L46.2,29.3 L47.5,25 L44,22.3 L48.5,22.2 Z"
+            fill="rgba(255,255,255,0.70)"
+          />
+        )}
       </svg>
-      <div style={{ position: 'absolute', display: 'flex', flexDirection: 'column', alignItems: 'center', color: locked ? '#8a93a8' : '#fff' }}>
-        <Icon name={locked ? 'lock' : module.icon} size={size * 0.34} stroke={2.1} />
+
+      {/* Icon and label overlay */}
+      <div style={{
+        position: 'absolute',
+        top: 0, bottom: 0, left: 0, right: 0,
+        display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center',
+        color: locked ? '#8a95b0' : '#fff',
+        paddingBottom: showNumber && !locked ? '8%' : '0',
+      }}>
+        <Icon
+          name={locked ? 'lock' : module.icon}
+          size={size * 0.32}
+          stroke={2.2}
+          style={{ filter: earned ? 'drop-shadow(0 2px 5px rgba(0,0,0,0.3))' : 'none' }}
+        />
         {showNumber && !locked && (
-          <div style={{ fontSize: size * 0.13, fontWeight: 800, marginTop: 2, letterSpacing: '.04em', opacity: .9 }}>
-            {module.badge.name.toUpperCase()}
+          <div style={{
+            fontSize: size * 0.112,
+            fontWeight: 900,
+            marginTop: size * 0.055,
+            letterSpacing: '.06em',
+            textTransform: 'uppercase',
+            textShadow: '0 1px 4px rgba(0,0,0,0.35)',
+            lineHeight: 1,
+          }}>
+            {module.badge.name}
           </div>
         )}
       </div>
@@ -103,7 +178,7 @@ function Badge({ module, size = 96, state = 'earned', showNumber = true }) {
 }
 
 /* ---------------- Barra de XP ---------------- */
-function XPBar({ xp, max = 2400, light = false }) {
+function XPBar({ xp, max = 10000, light = false }) {
   const pct = Math.min(100, (xp / max) * 100);
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>

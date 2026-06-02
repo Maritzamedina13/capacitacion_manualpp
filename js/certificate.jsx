@@ -1,21 +1,13 @@
 /* ============================================================
    Certificado final — imprimible (PDF)
    ============================================================ */
-function makeFolio(name) {
-  let h = 0;
-  const base = (name || 'ITM') + '|practicas';
-  for (let i = 0; i < base.length; i++) h = (h * 31 + base.charCodeAt(i)) >>> 0;
-  const code = h.toString(36).toUpperCase().padStart(6, '0').slice(0, 6);
-  return `ITM-PP-${code}`;
-}
-
 function Certificate({ modules, name, xp, progress, onExit }) {
   const completed = progress.completed || {};
   const date = new Date();
   const fecha = date.toLocaleDateString('es-CO', { day: 'numeric', month: 'long', year: 'numeric' });
-  const folio = makeFolio(name);
   const allScores = modules.map(m => completed[m.id] ? completed[m.id].score : 0);
   const avg = Math.round(allScores.reduce((a, b) => a + b, 0) / modules.length);
+  const total = modules.length;
 
   return (
     <div className="stage" style={{ background: 'linear-gradient(160deg,#0a1228,#16224a)', position: 'relative' }}>
@@ -34,59 +26,96 @@ function Certificate({ modules, name, xp, progress, onExit }) {
           boxShadow: '0 30px 80px rgba(0,0,0,.45)', position: 'relative', overflow: 'hidden',
           display: 'flex', flexDirection: 'column'
         }}>
-          {/* marco decorativo */}
+          {/* Marco decorativo */}
           <div style={{ position: 'absolute', inset: 0, border: '2px solid var(--ing-1)', margin: 14, borderRadius: 6, pointerEvents: 'none' }} />
           <div style={{ position: 'absolute', inset: 0, border: '1px solid var(--ing-2)', margin: 19, borderRadius: 4, pointerEvents: 'none' }} />
-          {/* franja de color facultades arriba */}
-          <div style={{ display: 'flex', height: '1.2%' }} />
+
+          {/* Franja cromática superior con colores de los 9 módulos */}
           <div style={{ position: 'absolute', top: 14, left: 14, right: 14, height: 8, display: 'flex' }}>
-            {['#1F6FB2', '#4DA6E0', '#102D69', '#00A0B7', '#009030', '#98BF13', '#F19800', '#F6B63E'].map((col, i) => <div key={i} style={{ flex: 1, background: col }} />)}
+            {modules.map(m => (
+              <div key={m.id} style={{ flex: 1, background: m.colors.c1 }} />
+            ))}
           </div>
 
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: 'clamp(18px,4%,46px) clamp(24px,7%,80px)' }}>
-            {/* sello ITM */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: '2.5%' }}>
-              <div style={{ width: 50, height: 50, borderRadius: 12, background: 'linear-gradient(135deg,var(--ing-1),var(--ing-2))', display: 'grid', placeItems: 'center', color: '#fff', fontWeight: 900, fontSize: 20 }}>ITM</div>
-              <div style={{ textAlign: 'left', lineHeight: 1.2 }}>
-                <div style={{ fontWeight: 800, fontSize: 'clamp(13px,1.5vw,16px)', color: 'var(--ink)' }}>Institución Universitaria ITM</div>
-                <div style={{ fontWeight: 600, fontSize: 'clamp(9px,1vw,11px)', color: 'var(--ink-soft)', letterSpacing: '.1em', textTransform: 'uppercase' }}>Oficina de Prácticas Profesionales</div>
+
+            {/* Logo ITM real + título institucional */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, marginBottom: '2%' }}>
+              <img
+                src="recursos/logo-itm-1.png"
+                alt="Institución Universitaria ITM"
+                style={{ height: 'clamp(44px,5.5vw,66px)', width: 'auto', objectFit: 'contain' }}
+              />
+              <div style={{ fontWeight: 700, fontSize: 'clamp(9px,1.05vw,12px)', color: 'var(--ing-1)', letterSpacing: '.16em', textTransform: 'uppercase' }}>
+                Oficina de Prácticas Profesionales ITM
               </div>
             </div>
 
-            <div style={{ fontWeight: 700, fontSize: 'clamp(9px,1.1vw,12px)', color: 'var(--ing-2)', letterSpacing: '.2em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>Constancia de finalización</div>
-            <h1 style={{ fontSize: 'clamp(18px,2.9vw,30px)', fontWeight: 900, color: 'var(--ing-1)', marginTop: '2%', lineHeight: 1.1 }}>Ruta del Manual de Prácticas<br />Profesionales ITM</h1>
+            {/* Etiqueta */}
+            <div style={{ fontWeight: 700, fontSize: 'clamp(9px,1.1vw,12px)', color: 'var(--ing-2)', letterSpacing: '.2em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+              Constancia de finalización
+            </div>
 
-            <p style={{ fontSize: 'clamp(10px,1.3vw,14px)', color: 'var(--ink-soft)', marginTop: '4%' }}>Se otorga a</p>
-            <div style={{ fontSize: 'clamp(24px,4.4vw,42px)', fontWeight: 800, color: 'var(--ink)', margin: '1.2% 0 1.6%', fontStyle: 'italic', borderBottom: '2px solid var(--line)', paddingBottom: '1%', minWidth: '55%' }}>{name}</div>
-            <p style={{ fontSize: 'clamp(10px,1.3vw,14px)', color: 'var(--ink-soft)', maxWidth: '78%', lineHeight: 1.5 }}>
-              por completar los <strong style={{ color: 'var(--ink)' }}>6 módulos</strong> de la ruta gamificada, comprendiendo capítulo por capítulo el contenido del Manual de Prácticas Profesionales ITM, con un promedio de <strong style={{ color: 'var(--ing-1)' }}>{avg}% de aciertos</strong>.
+            {/* Título */}
+            <h1 style={{ fontSize: 'clamp(18px,2.9vw,30px)', fontWeight: 900, color: 'var(--ing-1)', marginTop: '2%', lineHeight: 1.1 }}>
+              Ruta del Manual de Prácticas<br />Profesionales ITM
+            </h1>
+
+            {/* Destinatario */}
+            <p style={{ fontSize: 'clamp(10px,1.3vw,14px)', color: 'var(--ink-soft)', marginTop: '3.5%' }}>Se otorga a</p>
+            <div style={{
+              fontSize: 'clamp(24px,4.4vw,42px)', fontWeight: 800, color: 'var(--ink)',
+              margin: '1.2% 0 1.8%', fontStyle: 'italic',
+              borderBottom: '2px solid var(--line)', paddingBottom: '1%', minWidth: '55%'
+            }}>
+              {name}
+            </div>
+
+            {/* Mensaje profesional y motivador */}
+            <p style={{ fontSize: 'clamp(10px,1.22vw,13px)', color: 'var(--ink-soft)', maxWidth: '84%', lineHeight: 1.7 }}>
+              En reconocimiento a su{' '}
+              <strong style={{ color: 'var(--ink)' }}>dedicación, disciplina y compromiso</strong>, por haber completado
+              con éxito los <strong style={{ color: 'var(--ing-1)' }}>{total} módulos</strong> de la{' '}
+              <strong style={{ color: 'var(--ink)' }}>Ruta del Manual de Prácticas Profesionales ITM</strong>,
+              superando capítulo por capítulo con un promedio de{' '}
+              <strong style={{ color: 'var(--ing-1)' }}>{avg}% de aprobación</strong>,
+              se acredita este logro formativo y se otorgan las{' '}
+              <strong style={{ color: 'var(--ing-1)' }}>{total} insignias de excelencia</strong>{' '}
+              que certifican su preparación integral para el proceso de prácticas profesionales en el ITM.
             </p>
 
-            {/* insignias */}
-            <div style={{ display: 'flex', gap: 'clamp(4px,1.2vw,14px)', marginTop: '3%' }}>
+            {/* Insignias de los 9 módulos con nombre */}
+            <div style={{ display: 'flex', gap: 'clamp(4px,1.1vw,12px)', marginTop: '2.5%', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start' }}>
               {modules.map(m => (
                 <div key={m.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
-                  <Badge module={m} size={48} state="earned" showNumber={false} />
+                  <Badge module={m} size={58} state="earned" showNumber={false} />
+                  <div style={{
+                    fontSize: 'clamp(6.5px,.75vw,8.5px)', fontWeight: 800,
+                    color: m.colors.c1, letterSpacing: '.04em',
+                    textTransform: 'uppercase', textAlign: 'center',
+                    maxWidth: 58, lineHeight: 1.2
+                  }}>
+                    {m.badge.name}
+                  </div>
                 </div>
               ))}
             </div>
 
-            {/* pie: firma, fecha, folio */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', width: '100%', marginTop: 'auto', paddingTop: '3.5%' }}>
-              <div style={{ textAlign: 'center', minWidth: '26%' }}>
-                <div style={{ fontFamily: "'Montserrat'", fontStyle: 'italic', fontWeight: 600, fontSize: 'clamp(12px,1.6vw,18px)', color: 'var(--ing-1)', borderBottom: '1.5px solid var(--ink)', paddingBottom: 4 }}>Oficina de Prácticas</div>
-                <div style={{ fontSize: 'clamp(8px,1vw,11px)', color: 'var(--ink-soft)', marginTop: 5, fontWeight: 600 }}>Vicerrectoría de Docencia</div>
+            {/* Pie: fecha + XP */}
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 'clamp(28px,5vw,60px)', width: '100%', marginTop: 'auto', paddingTop: '3%' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+                <div style={{ width: 'clamp(38px,4.5vw,52px)', height: 'clamp(38px,4.5vw,52px)', borderRadius: '50%', border: '2px solid var(--gold-deep)', display: 'grid', placeItems: 'center', color: 'var(--gold-deep)' }}>
+                  <Icon name="medal" size={26} />
+                </div>
+                <div style={{ fontSize: 'clamp(8px,.95vw,11px)', color: 'var(--ink-soft)', fontWeight: 700 }}>{xp} XP</div>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
-                <div style={{ width: 'clamp(40px,5vw,58px)', height: 'clamp(40px,5vw,58px)', borderRadius: '50%', border: '2px solid var(--gold-deep)', display: 'grid', placeItems: 'center', color: 'var(--gold-deep)' }}><Icon name="medal" size={28} /></div>
-                <div style={{ fontSize: 'clamp(8px,.95vw,10px)', color: 'var(--ink-soft)', fontWeight: 700 }}>{xp} XP</div>
-              </div>
-              <div style={{ textAlign: 'center', minWidth: '26%' }}>
-                <div style={{ fontWeight: 700, fontSize: 'clamp(11px,1.4vw,15px)', color: 'var(--ink)', borderBottom: '1.5px solid var(--ink)', paddingBottom: 4 }}>{fecha}</div>
-                <div style={{ fontSize: 'clamp(8px,1vw,11px)', color: 'var(--ink-soft)', marginTop: 5, fontWeight: 600 }}>Fecha de emisión</div>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontWeight: 700, fontSize: 'clamp(11px,1.4vw,15px)', color: 'var(--ink)' }}>{fecha}</div>
+                <div style={{ fontSize: 'clamp(8px,1vw,11px)', color: 'var(--ink-soft)', marginTop: 4, fontWeight: 600 }}>Fecha de emisión</div>
               </div>
             </div>
-            <div style={{ fontSize: 'clamp(8px,1vw,11px)', color: 'var(--ink-soft)', marginTop: '1.5%', letterSpacing: '.1em', fontWeight: 600 }}>FOLIO DE VERIFICACIÓN · {folio}</div>
+
+
           </div>
         </div>
       </main>
