@@ -126,7 +126,7 @@ function Welcome({ modules, onStart, savedName, hasProgress, onContinue, complet
               borderRadius: 18, overflow: 'hidden', maxWidth: 440
             }}>
               {[
-                { icon: 'route',  val: '9', label: 'Módulos OVA' },
+                { icon: 'route',  val: '9', label: 'Módulos' },
                 { icon: 'shield', val: '9', label: 'Insignias' },
                 { icon: 'trophy', val: '1', label: 'Constancia' },
               ].map(({ icon, val, label }, i) => (

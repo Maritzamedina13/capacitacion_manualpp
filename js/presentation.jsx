@@ -4,33 +4,50 @@
    ============================================================ */
 const { useState, useEffect, useCallback } = React;
 
-/* ---- Inyecta CSS de impresión al montar ---- */
-function usePrintStyles() {
-  useEffect(() => {
-    const s = document.createElement('style');
-    s.id = 'exec-pres-print';
-    s.textContent = `
-      @media print {
-        html, body { margin:0; padding:0; background:#fff; }
-        body > * { display:none !important; }
-        #exec-pres-root,
-        #exec-pres-root * { display:revert !important; visibility:visible !important; }
-        .exec-pres-overlay { position:static !important; background:transparent !important; padding:0 !important; }
-        .exec-pres-slide-wrap { position:static !important; width:100% !important; aspect-ratio:16/9 !important; }
-        .exec-slide { display:flex !important; visibility:visible !important; break-after:page; page-break-after:always; position:relative !important; }
-        .exec-pres-ctrl { display:none !important; }
-        .exec-pres-dots { display:none !important; }
-        @page { size:A4 landscape; margin:0; }
-      }
-    `;
-    document.head.appendChild(s);
-    return () => document.getElementById('exec-pres-print')?.remove();
-  }, []);
+/* ---- Genera ventana de impresión con todas las diapositivas ---- */
+function handlePrint() {
+  const wrapper = document.querySelector('.exec-pres-slide-wrap');
+  if (!wrapper) return;
+
+  const base = window.location.href.replace(/\/[^\/]*$/, '/');
+  let html = wrapper.innerHTML;
+  // Convierte paths relativos a absolutos para que las imágenes carguen
+  html = html.replace(/src="recursos\//g, 'src="' + base + 'recursos/');
+
+  const pw = window.open('', '_blank', 'width=1280,height=900');
+  if (!pw) { alert('Permite ventanas emergentes para descargar el PDF.'); return; }
+
+  pw.document.write(`<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8">
+<title>Manual de Prácticas Profesionales ITM</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Montserrat",system-ui,sans-serif;background:#fff;-webkit-font-smoothing:antialiased}
+:root{--ink:#16203a;--ink-soft:#4a5675;--line:#e3e8f2;--gold:#f4c84a;
+  --ing-1:#102D69;--ing-2:#00A0B7;--ing-3:#56ACDE;--cea-1:#009030}
+img{max-width:100%;height:auto}
+.exec-pres-slide-wrap{width:100%;display:block}
+.exec-slide{
+  width:100% !important;height:100vh !important;
+  display:flex !important;flex-direction:column !important;
+  position:relative !important;inset:unset !important;
+  overflow:hidden;break-after:page;page-break-after:always;
+  background:#fff}
+@page{size:A4 landscape;margin:0}
+</style>
+</head><body>
+<div class="exec-pres-slide-wrap">${html}</div>
+</body></html>`);
+
+  pw.document.close();
+  pw.focus();
+  setTimeout(() => { pw.print(); }, 1000);
 }
 
 /* ---- Componente principal ---- */
 function ExecutivePresentation({ modules, onClose }) {
-  usePrintStyles();
   const [cur, setCur] = useState(0);
   const TOTAL = modules.length + 2; // portada + 9 módulos + cierre
   const prev = () => setCur(c => Math.max(0, c - 1));
@@ -80,11 +97,11 @@ function ExecutivePresentation({ modules, onClose }) {
 
           <p style={{ color:'rgba(255,255,255,0.75)', fontSize:'clamp(12px,1.4vw,16px)', maxWidth:580, lineHeight:1.65, marginBottom:'3%' }}>
             Una guía estructurada por capítulos que resume el contenido del manual vigente
-            y sirve como abrebocas a la ruta de aprendizaje gamificada del ITM.
+            y sirve como abrebocas a la ruta de aprendizaje del ITM.
           </p>
 
           <div style={{ display:'flex', gap:'clamp(16px,2.5vw,36px)', flexWrap:'wrap', justifyContent:'center' }}>
-            {[['9', 'Capítulos'], ['9', 'Módulos OVA'], ['10 000', 'XP máximo']].map(([n, l]) => (
+            {[['9', 'Capítulos'], ['9', 'Módulos'], ['10 000', 'XP máximo']].map(([n, l]) => (
               <div key={l} style={{ textAlign:'center' }}>
                 <div style={{ color:'#56ACDE', fontWeight:900, fontSize:'clamp(20px,2.8vw,32px)', lineHeight:1 }}>{n}</div>
                 <div style={{ color:'rgba(255,255,255,0.6)', fontWeight:600, fontSize:'clamp(10px,1vw,12px)', textTransform:'uppercase', letterSpacing:'.06em', marginTop:4 }}>{l}</div>
@@ -118,7 +135,7 @@ function ExecutivePresentation({ modules, onClose }) {
             <div style={{ width:28, height:28, borderRadius:'50%', background:`linear-gradient(135deg,${c.c1},${c.c2})`, display:'grid', placeItems:'center', color:'#fff', fontWeight:900, fontSize:13, flexShrink:0 }}>{m.id}</div>
             <div style={{ textAlign:'right' }}>
               <div style={{ fontWeight:800, fontSize:'clamp(10px,1.1vw,13px)', color:c.c1, letterSpacing:'.06em', textTransform:'uppercase' }}>{m.cap}</div>
-              <div style={{ fontWeight:600, fontSize:'clamp(9px,0.9vw,11px)', color:'#8a96b0', letterSpacing:'.04em', textTransform:'uppercase' }}>Ruta Gamificada ITM</div>
+              <div style={{ fontWeight:600, fontSize:'clamp(9px,0.9vw,11px)', color:'#8a96b0', letterSpacing:'.04em', textTransform:'uppercase' }}>Prácticas Profesionales ITM</div>
             </div>
           </div>
         </div>
@@ -181,7 +198,7 @@ function ExecutivePresentation({ modules, onClose }) {
         </div>
 
         <div style={{ flex:1, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', padding:'4% 6%', position:'relative', textAlign:'center' }}>
-          <div style={{ fontWeight:800, fontSize:'clamp(10px,1.1vw,13px)', color:'#56ACDE', letterSpacing:'.14em', textTransform:'uppercase', marginBottom:'1.5%' }}>Ruta de Aprendizaje Gamificada</div>
+          <div style={{ fontWeight:800, fontSize:'clamp(10px,1.1vw,13px)', color:'#56ACDE', letterSpacing:'.14em', textTransform:'uppercase', marginBottom:'1.5%' }}>Ruta de Aprendizaje</div>
 
           <h2 style={{ color:'#fff', fontSize:'clamp(20px,3vw,38px)', fontWeight:900, lineHeight:1.1, maxWidth:600, marginBottom:'1.5%' }}>
             ¡Ahora estás listo para comenzar tu ruta!
@@ -282,7 +299,7 @@ function ExecutivePresentation({ modules, onClose }) {
         </button>
 
         {/* Descargar PDF */}
-        <button onClick={() => window.print()} style={{
+        <button onClick={handlePrint} style={{
           display:'flex', alignItems:'center', gap:7,
           background:'linear-gradient(135deg,#102D69,#00A0B7)', color:'#fff',
           border:'none', borderRadius:999, padding:'9px 20px',
