@@ -50,11 +50,11 @@ function MapNode({ module, state, onClick, index }) {
           </div>
         )}
         <div style={{
-          width: 'clamp(74px,9vw,104px)', height: 'clamp(74px,9vw,104px)', borderRadius: '50%',
+          width: 'clamp(58px,7.5vw,88px)', height: 'clamp(58px,7.5vw,88px)', borderRadius: '50%',
           display: 'grid', placeItems: 'center', position: 'relative',
           background: state === 'locked' ? 'rgba(255,255,255,.07)' : `linear-gradient(140deg,${c.c2},${c.c1})`,
-          border: state === 'locked' ? '2px dashed rgba(255,255,255,.22)' : '4px solid rgba(255,255,255,.9)',
-          boxShadow: state === 'locked' ? 'none' : `0 14px 30px -8px ${c.c1}, 0 0 0 6px ${c.c1}22`,
+          border: state === 'locked' ? '2px dashed rgba(255,255,255,.22)' : '3px solid rgba(255,255,255,.9)',
+          boxShadow: state === 'locked' ? 'none' : `0 10px 24px -8px ${c.c1}, 0 0 0 5px ${c.c1}22`,
           transition: 'transform .2s ease',
           animation: state === 'current' ? 'pulseRing 2s infinite' : 'none',
           color: state === 'locked' ? 'rgba(255,255,255,.45)' : '#fff'
@@ -62,15 +62,15 @@ function MapNode({ module, state, onClick, index }) {
           onMouseEnter={(e) => { if (clickable) e.currentTarget.style.transform = 'scale(1.07)'; }}
           onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
         >
-          <Icon name={state === 'locked' ? 'lock' : module.icon} size={state === 'locked' ? 30 : 40} stroke={2.1} />
+          <Icon name={state === 'locked' ? 'lock' : module.icon} size={state === 'locked' ? 22 : 30} stroke={2.1} />
           {/* número */}
-          <div style={{ position: 'absolute', bottom: -8, right: -6, width: 30, height: 30, borderRadius: '50%', background: '#fff', color: c.c1, fontWeight: 900, fontSize: 14, display: 'grid', placeItems: 'center', boxShadow: '0 4px 10px rgba(0,0,0,.2)' }}>
-            {state === 'completed' ? <Icon name="check" size={16} stroke={3} /> : module.id}
+          <div style={{ position: 'absolute', bottom: -7, right: -5, width: 24, height: 24, borderRadius: '50%', background: '#fff', color: c.c1, fontWeight: 900, fontSize: 12, display: 'grid', placeItems: 'center', boxShadow: '0 3px 8px rgba(0,0,0,.2)' }}>
+            {state === 'completed' ? <Icon name="check" size={13} stroke={3} /> : module.id}
           </div>
         </div>
-        <div style={{ marginTop: 14, textAlign: 'center', maxWidth: 156 }}>
-          <div style={{ color: state === 'locked' ? 'rgba(255,255,255,.4)' : '#fff', fontWeight: 800, fontSize: 'clamp(12px,1.3vw,14px)', lineHeight: 1.25 }}>{module.title}</div>
-          <div style={{ color: 'rgba(255,255,255,.45)', fontSize: 10.5, fontWeight: 600, letterSpacing: '.05em', marginTop: 5, textTransform: 'uppercase', lineHeight: 1.3 }}>{module.cap}</div>
+        <div style={{ marginTop: 10, textAlign: 'center', maxWidth: 130 }}>
+          <div style={{ color: state === 'locked' ? 'rgba(255,255,255,.4)' : '#fff', fontWeight: 800, fontSize: 'clamp(10px,1.2vw,13px)', lineHeight: 1.25 }}>{module.title}</div>
+          <div style={{ color: 'rgba(255,255,255,.45)', fontSize: 9.5, fontWeight: 600, letterSpacing: '.05em', marginTop: 4, textTransform: 'uppercase', lineHeight: 1.3 }}>{module.cap}</div>
         </div>
       </div>
     </button>
@@ -154,14 +154,14 @@ function LevelMap({ modules, progress, name, xp, onSelectModule, onCertificate, 
             }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <div style={{
-                width: 'clamp(74px,9vw,104px)', height: 'clamp(74px,9vw,104px)', borderRadius: '50%', display: 'grid', placeItems: 'center',
+                width: 'clamp(58px,7.5vw,88px)', height: 'clamp(58px,7.5vw,88px)', borderRadius: '50%', display: 'grid', placeItems: 'center',
                 background: allDone ? 'linear-gradient(140deg,var(--gold),var(--gold-deep))' : 'rgba(255,255,255,.07)',
                 border: allDone ? '4px solid #fff' : '2px dashed rgba(255,255,255,.22)',
                 boxShadow: allDone ? '0 14px 34px -6px var(--gold-deep), 0 0 0 6px rgba(244,200,74,.2)' : 'none',
                 color: allDone ? '#5a3e00' : 'rgba(255,255,255,.45)',
                 animation: allDone ? 'pulseRing 2s infinite' : 'none'
               }}>
-                <Icon name="trophy" size={42} stroke={2} />
+                <Icon name="trophy" size={32} stroke={2} />
               </div>
               <div style={{ marginTop: 14, textAlign: 'center' }}>
                 <div style={{ color: allDone ? 'var(--gold)' : 'rgba(255,255,255,.4)', fontWeight: 800, fontSize: 'clamp(12px,1.3vw,14px)' }}>Constancia</div>
