@@ -17,21 +17,14 @@ function Welcome({ modules, onStart, savedName, hasProgress, onContinue, complet
 
       {/* ── Fondo decorativo ── */}
       <div aria-hidden="true" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-        <div style={{
-          position: 'absolute', top: '-200px', right: '-130px',
-          width: '720px', height: '720px', borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(0,160,183,0.17) 0%, transparent 65%)'
-        }} />
-        <div style={{
-          position: 'absolute', bottom: '-120px', left: '-110px',
-          width: '520px', height: '520px', borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(244,200,74,0.09) 0%, transparent 65%)'
-        }} />
-        <div style={{
-          position: 'absolute', top: '25%', left: '15%',
-          width: '460px', height: '460px', borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(16,45,105,0.50) 0%, transparent 70%)'
-        }} />
+        <div style={{ position:'absolute', top:'-180px', right:'-100px', width:'680px', height:'680px', borderRadius:'50%', background:'radial-gradient(circle, rgba(0,160,183,0.20) 0%, transparent 65%)' }} />
+        <div style={{ position:'absolute', bottom:'-100px', left:'-80px', width:'480px', height:'480px', borderRadius:'50%', background:'radial-gradient(circle, rgba(16,45,105,0.55) 0%, transparent 70%)' }} />
+        <div style={{ position:'absolute', top:'40%', right:'30%', width:'300px', height:'300px', borderRadius:'50%', background:'radial-gradient(circle, rgba(86,172,222,0.10) 0%, transparent 70%)' }} />
+        {/* Hexágono decorativo sutil */}
+        <svg style={{ position:'absolute', bottom:'-40px', right:'5%', opacity:.04 }} width="340" height="340" viewBox="0 0 100 100">
+          <polygon points="50,5 92,27 92,73 50,95 8,73 8,27" fill="none" stroke="white" strokeWidth="1.2"/>
+          <polygon points="50,15 84,33 84,67 50,85 16,67 16,33" fill="none" stroke="white" strokeWidth="0.7"/>
+        </svg>
       </div>
 
       {/* ── Header ── */}
@@ -74,31 +67,39 @@ function Welcome({ modules, onStart, savedName, hasProgress, onContinue, complet
           className="welcome-grid"
         >
 
-          {/* ── Columna izquierda ── */}
-          <div>
+          {/* ── Columna izquierda: PANEL BLANCO sobre fondo azul ── */}
+          <div style={{
+            background: '#ffffff',
+            borderRadius: 24,
+            padding: 'clamp(24px,3.5vw,48px)',
+            boxShadow: '0 24px 70px rgba(0,0,0,0.38), 0 0 0 1px rgba(255,255,255,0.08)',
+            position: 'relative', overflow: 'hidden'
+          }}>
+            {/* Acento azul superior */}
+            <div style={{ position:'absolute', top:0, left:0, right:0, height:5, background:'linear-gradient(90deg,#102D69,#00A0B7,#56ACDE)' }} />
 
             {/* Chip de categoría */}
-            <div style={{ marginBottom: 22 }}>
+            <div style={{ marginBottom: 20, marginTop: 6 }}>
               <span className="chip" style={{
-                background: 'rgba(86,172,222,0.13)',
-                color: 'var(--ing-3)',
-                border: '1px solid rgba(86,172,222,0.28)'
+                background: '#eef5ff',
+                color: '#102D69',
+                border: '1px solid #c8dcf8'
               }}>
-                <Icon name="sparkle" size={13} style={{ color: 'var(--gold)' }} />
+                <Icon name="sparkle" size={13} style={{ color: '#00A0B7' }} />
                 Ruta de aprendizaje Manual de Prácticas Profesionales ITM
               </span>
             </div>
 
             {/* Título principal */}
             <h1 style={{
-              color: '#fff',
-              fontSize: 'clamp(36px,5vw,62px)',
-              fontWeight: 900, lineHeight: 1.01,
-              letterSpacing: '-0.03em', marginBottom: 22
+              color: '#16203a',
+              fontSize: 'clamp(30px,4.4vw,54px)',
+              fontWeight: 900, lineHeight: 1.02,
+              letterSpacing: '-0.03em', marginBottom: 18
             }}>
               Manual de<br />Prácticas<br />
               <span style={{
-                background: 'linear-gradient(125deg, var(--ing-3) 0%, #7dd3ef 50%, var(--ing-2) 100%)',
+                background: 'linear-gradient(125deg, #102D69 0%, #00A0B7 55%, #56ACDE 100%)',
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'
               }}>
                 Profesionales ITM
@@ -107,55 +108,55 @@ function Welcome({ modules, onStart, savedName, hasProgress, onContinue, complet
 
             {/* Descripción */}
             <p style={{
-              color: 'rgba(255,255,255,0.68)',
-              fontSize: 'clamp(14px,1.5vw,17px)',
-              maxWidth: 490, lineHeight: 1.72, marginBottom: 32
+              color: '#4a5675',
+              fontSize: 'clamp(13px,1.4vw,16px)',
+              maxWidth: 480, lineHeight: 1.72, marginBottom: 26
             }}>
               Recorre el manual capítulo por capítulo en{' '}
-              <strong style={{ color: '#fff' }}>9 módulos interactivos</strong>.
+              <strong style={{ color: '#102D69' }}>9 módulos interactivos</strong>.
               Aprende, supera cada reto, gana una{' '}
-              <strong style={{ color: 'var(--gold)' }}>insignia</strong> por módulo y obtén tu{' '}
-              <strong style={{ color: '#fff' }}>constancia final</strong>.
+              <strong style={{ color: '#00A0B7' }}>insignia</strong> por módulo y obtén tu{' '}
+              <strong style={{ color: '#102D69' }}>constancia final</strong>.
             </p>
 
             {/* Tarjeta de estadísticas */}
             <div style={{
-              display: 'flex', marginBottom: 36,
-              background: 'rgba(255,255,255,0.05)',
-              border: '1px solid rgba(255,255,255,0.10)',
-              borderRadius: 18, overflow: 'hidden', maxWidth: 440
+              display: 'flex', marginBottom: 28,
+              background: '#f0f6ff',
+              border: '1px solid #d0e4f8',
+              borderRadius: 16, overflow: 'hidden', maxWidth: 420
             }}>
               {[
-                { icon: 'route',  val: '9', label: 'Módulos' },
+                { icon: 'route',  val: '9', label: 'Módulos'   },
                 { icon: 'shield', val: '9', label: 'Insignias' },
-                { icon: 'trophy', val: '1', label: 'Constancia' },
+                { icon: 'trophy', val: '1', label: 'Constancia'},
               ].map(({ icon, val, label }, i) => (
                 <div key={label} style={{
-                  flex: 1, padding: '16px 8px',
-                  display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 5,
-                  borderRight: i < 2 ? '1px solid rgba(255,255,255,0.09)' : 'none'
+                  flex: 1, padding: '14px 8px',
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
+                  borderRight: i < 2 ? '1px solid #cde0f5' : 'none'
                 }}>
-                  <Icon name={icon} size={19} style={{ color: 'var(--ing-3)', opacity: 0.9 }} />
-                  <span style={{ color: '#fff', fontWeight: 900, fontSize: 24, lineHeight: 1 }}>{val}</span>
-                  <span style={{ color: 'rgba(255,255,255,0.45)', fontWeight: 600, fontSize: 11 }}>{label}</span>
+                  <Icon name={icon} size={18} style={{ color: '#00A0B7' }} />
+                  <span style={{ color: '#102D69', fontWeight: 900, fontSize: 22, lineHeight: 1 }}>{val}</span>
+                  <span style={{ color: '#7a8aaa', fontWeight: 600, fontSize: 11 }}>{label}</span>
                 </div>
               ))}
             </div>
 
             {/* Formulario */}
-            <div style={{ maxWidth: 460 }}>
+            <div style={{ maxWidth: 440 }}>
               <label style={{
-                display: 'block', color: 'rgba(255,255,255,0.45)',
-                fontWeight: 700, fontSize: 12, letterSpacing: '.07em',
-                textTransform: 'uppercase', marginBottom: 10
+                display: 'block', color: '#7a8aaa',
+                fontWeight: 700, fontSize: 11, letterSpacing: '.07em',
+                textTransform: 'uppercase', marginBottom: 8
               }}>
                 Tu nombre para comenzar
               </label>
               <div className="welcome-form-row" style={{
                 display: 'flex', gap: 8, alignItems: 'center',
-                background: 'rgba(255,255,255,0.06)',
-                border: '1.5px solid rgba(255,255,255,0.14)',
-                borderRadius: 16, padding: '6px 6px 6px 18px',
+                background: '#f8faff',
+                border: '1.5px solid #c8dcf0',
+                borderRadius: 14, padding: '5px 5px 5px 16px',
               }}>
                 <input
                   value={name}
@@ -164,69 +165,69 @@ function Welcome({ modules, onStart, savedName, hasProgress, onContinue, complet
                   placeholder="Nombre y apellido"
                   style={{
                     flex: 1, border: 'none', outline: 'none',
-                    background: 'transparent', color: '#fff',
+                    background: 'transparent', color: '#16203a',
                     fontSize: 15, fontWeight: 600, padding: '9px 0', minWidth: 0
                   }}
                 />
                 <button
                   className="btn btn-primary"
                   disabled={!valid}
-                  style={{ '--m-1': 'var(--ing-2)', '--m-2': 'var(--ing-3)', padding: '12px 22px', borderRadius: 12, fontSize: 15 }}
+                  style={{ '--m-1': '#102D69', '--m-2': '#00A0B7', padding: '11px 20px', borderRadius: 11, fontSize: 14 }}
                   onClick={() => valid && onStart(name.trim())}
                 >
-                  <Icon name="play" size={16} /> Comenzar
+                  <Icon name="play" size={15} /> Comenzar
                 </button>
               </div>
-              {/* Botón presentación ejecutiva */}
+
+              {/* Botón presentación */}
               <button
                 onClick={() => setShowPres(true)}
                 style={{
-                  marginTop: 14, display: 'inline-flex', alignItems: 'center', gap: 9,
-                  background: 'linear-gradient(135deg,rgba(16,45,105,0.7),rgba(0,160,183,0.5))',
-                  border: '1.5px solid rgba(86,172,222,0.45)',
-                  color: '#fff', fontWeight: 700, fontSize: 14,
-                  padding: '11px 20px', borderRadius: 12, cursor: 'pointer',
+                  marginTop: 12, display: 'flex', alignItems: 'center', gap: 8, width: '100%',
+                  background: 'linear-gradient(135deg,#102D69,#0e6a8e)',
+                  color: '#fff', fontWeight: 700, fontSize: 13,
+                  padding: '11px 18px', borderRadius: 11, cursor: 'pointer', border: 'none',
                   transition: 'filter .18s'
                 }}
-                onMouseEnter={e => e.currentTarget.style.filter = 'brightness(1.15)'}
+                onMouseEnter={e => e.currentTarget.style.filter = 'brightness(1.12)'}
                 onMouseLeave={e => e.currentTarget.style.filter = ''}
               >
-                <Icon name="sparkle" size={16} style={{ color: 'var(--gold)' }} />
+                <Icon name="sparkle" size={15} style={{ color: '#f4c84a' }} />
                 Ver Presentación del Manual
-                <Icon name="arrowR" size={14} style={{ opacity: 0.7 }} />
+                <Icon name="arrowR" size={13} style={{ marginLeft: 'auto', opacity: 0.7 }} />
               </button>
 
-              {/* Botón ver manual */}
+              {/* Botón ver manual digital */}
               <a
                 href="https://heyzine.com/flip-book/d912237a0e.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  marginTop: 14, display: 'inline-flex', alignItems: 'center', gap: 9,
-                  background: 'rgba(255,255,255,0.08)',
-                  border: '1.5px solid rgba(255,255,255,0.22)',
-                  color: 'rgba(255,255,255,0.88)', fontWeight: 700, fontSize: 14,
-                  padding: '11px 20px', borderRadius: 12, textDecoration: 'none',
-                  transition: 'background .18s, border-color .18s'
+                  marginTop: 8, display: 'flex', alignItems: 'center', gap: 8,
+                  background: '#fff', border: '1.5px solid #c8dcf0',
+                  color: '#102D69', fontWeight: 700, fontSize: 13,
+                  padding: '11px 18px', borderRadius: 11, textDecoration: 'none',
+                  transition: 'border-color .18s, background .18s'
                 }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.45)'; }}
-                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.22)'; }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = '#00A0B7'; e.currentTarget.style.background = '#f0f9ff'; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = '#c8dcf0'; e.currentTarget.style.background = '#fff'; }}
               >
-                <Icon name="book" size={16} style={{ color: 'var(--ing-3)' }} />
+                <Icon name="book" size={15} style={{ color: '#00A0B7' }} />
                 Ver Manual de Prácticas Profesionales ITM
-                <Icon name="arrowR" size={14} style={{ opacity: 0.6 }} />
+                <Icon name="arrowR" size={13} style={{ marginLeft: 'auto', color: '#00A0B7' }} />
               </a>
 
               {hasProgress && (
                 <button
                   onClick={onContinue}
                   style={{
-                    marginTop: 10, background: 'none',
-                    color: 'rgba(255,255,255,0.75)', fontWeight: 700, fontSize: 14,
-                    display: 'flex', alignItems: 'center', gap: 8, padding: '4px 0'
+                    marginTop: 10, background: 'none', border: 'none',
+                    color: '#4a5675', fontWeight: 700, fontSize: 13,
+                    display: 'flex', alignItems: 'center', gap: 7, padding: '4px 0', cursor: 'pointer'
                   }}
                 >
-                  <Icon name="arrowR" size={15} /> Continuar mi progreso ({completedCount}/9 módulos)
+                  <Icon name="arrowR" size={14} style={{ color: '#00A0B7' }} />
+                  Continuar mi progreso ({completedCount}/9 módulos)
                 </button>
               )}
             </div>
