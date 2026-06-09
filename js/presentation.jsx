@@ -14,7 +14,7 @@ function usePresStyles() {
       @media (max-width: 900px) {
         .exec-pres-slide-wrap {
           aspect-ratio: unset !important;
-          height: min(68vw, 440px) !important;
+          height: min(72vw, 500px) !important;
         }
         .exec-cover { grid-template-columns: 1fr !important; }
         .exec-cover-right { display: none !important; }
@@ -23,7 +23,7 @@ function usePresStyles() {
       }
       /* Móvil (≤ 560px) */
       @media (max-width: 560px) {
-        .exec-pres-slide-wrap { height: min(80vw, 340px) !important; }
+        .exec-pres-slide-wrap { height: min(85vw, 380px) !important; }
         .exec-pres-dots { display: none !important; }
         .exec-ctrl-label { display: none !important; }
         .exec-pres-ctrl { gap: 7px !important; }
@@ -117,20 +117,20 @@ function ExecutivePresentation({ modules, onClose }) {
           </svg>
 
           <img src="recursos/logo-itm-2.png" alt="ITM"
-            style={{ height:'clamp(38px,5vw,62px)', marginBottom:'8%', objectFit:'contain', alignSelf:'flex-start' }} />
+            style={{ height:'clamp(42px,5.2vw,68px)', marginBottom:'8%', objectFit:'contain', alignSelf:'flex-start' }} />
 
-          <h1 style={{ color:'#fff', fontSize:'clamp(20px,3vw,40px)', fontWeight:900, lineHeight:1.08, marginBottom:'4%' }}>
+          <h1 style={{ color:'#fff', fontSize:'clamp(23px,3.2vw,44px)', fontWeight:900, lineHeight:1.08, marginBottom:'4%' }}>
             Manual de<br/>Prácticas<br/>Profesionales ITM
           </h1>
 
           <div style={{ width:48, height:4, background:'linear-gradient(90deg,#56ACDE,#00A0B7)', borderRadius:99, marginBottom:'5%' }} />
 
-          <p style={{ color:'rgba(255,255,255,0.72)', fontSize:'clamp(10px,1.1vw,13px)', lineHeight:1.7, maxWidth:360 }}>
+          <p style={{ color:'rgba(255,255,255,0.72)', fontSize:'clamp(13px,1.3vw,16px)', lineHeight:1.7, maxWidth:360 }}>
             Guía estructurada por capítulos que resume el contenido del manual vigente
             y sirve como punto de partida para la ruta de aprendizaje del ITM.
           </p>
 
-          <div style={{ marginTop:'auto', paddingTop:'8%', color:'rgba(255,255,255,0.35)', fontSize:'clamp(8px,0.75vw,9.5px)', fontWeight:600 }}>
+          <div style={{ marginTop:'auto', paddingTop:'8%', color:'rgba(255,255,255,0.35)', fontSize:'clamp(10px,0.95vw,12px)', fontWeight:600 }}>
             MDE 001 · V5 · Oficina de Prácticas Profesionales ITM
           </div>
         </div>
@@ -142,7 +142,7 @@ function ExecutivePresentation({ modules, onClose }) {
         }}>
           <div style={{ height:5, background:'linear-gradient(90deg,#102D69,#00A0B7)', borderRadius:99, width:'55%' }} />
 
-          <div style={{ fontWeight:800, fontSize:'clamp(10px,1vw,12px)', color:'#102D69', letterSpacing:'.1em', textTransform:'uppercase' }}>
+          <div style={{ fontWeight:800, fontSize:'clamp(13px,1.2vw,15px)', color:'#102D69', letterSpacing:'.1em', textTransform:'uppercase' }}>
             Contenido de la presentación
           </div>
 
@@ -154,12 +154,12 @@ function ExecutivePresentation({ modules, onClose }) {
               { n:'1',      l:'Constancia de Finalización', icon:'trophy' },
             ].map(({ n, l, icon }) => (
               <div key={l} style={{ display:'flex', alignItems:'center', gap:'4%', padding:'3.5% 0', borderBottom:'1px solid #e8ecf5' }}>
-                <div style={{ width:'clamp(30px,3.5vw,40px)', height:'clamp(30px,3.5vw,40px)', borderRadius:10, background:'linear-gradient(135deg,#102D69,#00A0B7)', display:'grid', placeItems:'center', color:'#fff', flexShrink:0 }}>
-                  <Icon name={icon} size={16} />
+                <div style={{ width:'clamp(34px,4vw,46px)', height:'clamp(34px,4vw,46px)', borderRadius:10, background:'linear-gradient(135deg,#102D69,#00A0B7)', display:'grid', placeItems:'center', color:'#fff', flexShrink:0 }}>
+                  <Icon name={icon} size={18} />
                 </div>
                 <div>
-                  <div style={{ fontWeight:900, fontSize:'clamp(16px,2vw,26px)', color:'#102D69', lineHeight:1 }}>{n}</div>
-                  <div style={{ fontWeight:600, fontSize:'clamp(8px,0.85vw,10.5px)', color:'#8a96b0', marginTop:2 }}>{l}</div>
+                  <div style={{ fontWeight:900, fontSize:'clamp(19px,2.3vw,30px)', color:'#102D69', lineHeight:1 }}>{n}</div>
+                  <div style={{ fontWeight:600, fontSize:'clamp(11px,1.05vw,14px)', color:'#8a96b0', marginTop:2 }}>{l}</div>
                 </div>
               </div>
             ))}
@@ -167,7 +167,7 @@ function ExecutivePresentation({ modules, onClose }) {
 
           <div style={{ display:'flex', gap:'clamp(4px,0.8vw,10px)', flexWrap:'wrap', paddingTop:'2%' }}>
             {modules.slice(0, 5).map(m => (
-              <Badge key={m.id} module={m} size={Math.min(46, window.innerWidth * 0.036)} state="earned" showNumber={false} />
+              <Badge key={m.id} module={m} size={Math.min(54, window.innerWidth * 0.042)} state="earned" showNumber={false} />
             ))}
           </div>
         </div>
@@ -183,45 +183,45 @@ function ExecutivePresentation({ modules, onClose }) {
         <div style={{ height:6, background:`linear-gradient(90deg,${c.c1},${c.c2})`, flexShrink:0 }} />
 
         <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', padding:'2% 4% 1.5%', borderBottom:`1px solid ${c.c1}18`, flexShrink:0 }}>
-          <img src="recursos/logo-itm-1.png" alt="ITM" style={{ height:'clamp(24px,3.2vw,40px)', objectFit:'contain' }} />
+          <img src="recursos/logo-itm-1.png" alt="ITM" style={{ height:'clamp(28px,3.5vw,46px)', objectFit:'contain' }} />
           <div style={{ display:'flex', alignItems:'center', gap:8 }}>
-            <div style={{ width:26, height:26, borderRadius:'50%', background:`linear-gradient(135deg,${c.c1},${c.c2})`, display:'grid', placeItems:'center', color:'#fff', fontWeight:900, fontSize:12 }}>{m.id}</div>
+            <div style={{ width:30, height:30, borderRadius:'50%', background:`linear-gradient(135deg,${c.c1},${c.c2})`, display:'grid', placeItems:'center', color:'#fff', fontWeight:900, fontSize:14 }}>{m.id}</div>
             <div style={{ textAlign:'right' }}>
-              <div style={{ fontWeight:800, fontSize:'clamp(9px,1vw,12px)', color:c.c1, letterSpacing:'.06em', textTransform:'uppercase' }}>{m.cap}</div>
-              <div style={{ fontWeight:600, fontSize:'clamp(8px,0.8vw,10px)', color:'#8a96b0', letterSpacing:'.04em', textTransform:'uppercase' }}>Prácticas Profesionales ITM</div>
+              <div style={{ fontWeight:800, fontSize:'clamp(12px,1.2vw,15px)', color:c.c1, letterSpacing:'.06em', textTransform:'uppercase' }}>{m.cap}</div>
+              <div style={{ fontWeight:600, fontSize:'clamp(11px,1vw,13px)', color:'#8a96b0', letterSpacing:'.04em', textTransform:'uppercase' }}>Prácticas Profesionales ITM</div>
             </div>
           </div>
         </div>
 
         <div className="exec-chapter-body" style={{ flex:1, display:'grid', gridTemplateColumns:'26% 1fr', gap:'2% 3%', padding:'2% 4%', minHeight:0 }}>
           <div className="exec-badge-col" style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:'5%' }}>
-            <Badge module={m} size={Math.min(100, window.innerWidth * 0.08)} state="earned" showNumber />
+            <Badge module={m} size={Math.min(115, window.innerWidth * 0.092)} state="earned" showNumber />
             <div style={{ textAlign:'center' }}>
-              <div style={{ fontWeight:800, fontSize:'clamp(8px,0.85vw,10px)', color:c.c1, letterSpacing:'.08em', textTransform:'uppercase' }}>Insignia</div>
-              <div style={{ fontWeight:900, fontSize:'clamp(10px,1.05vw,12px)', color:'#16203a', marginTop:2 }}>{m.badge.tag}</div>
+              <div style={{ fontWeight:800, fontSize:'clamp(11px,1.05vw,13px)', color:c.c1, letterSpacing:'.08em', textTransform:'uppercase' }}>Insignia</div>
+              <div style={{ fontWeight:900, fontSize:'clamp(13px,1.25vw,15px)', color:'#16203a', marginTop:2 }}>{m.badge.tag}</div>
             </div>
           </div>
 
           <div style={{ display:'flex', flexDirection:'column', justifyContent:'center', gap:'3%', minWidth:0 }}>
             <div>
-              <h2 style={{ fontSize:'clamp(14px,1.8vw,22px)', fontWeight:900, color:'#16203a', lineHeight:1.1, marginBottom:'1%' }}>{m.title}</h2>
-              <p style={{ fontSize:'clamp(9px,0.95vw,11.5px)', color:'#56608a', fontStyle:'italic', lineHeight:1.4 }}>{m.subtitle}</p>
+              <h2 style={{ fontSize:'clamp(17px,2.1vw,26px)', fontWeight:900, color:'#16203a', lineHeight:1.1, marginBottom:'1%' }}>{m.title}</h2>
+              <p style={{ fontSize:'clamp(12px,1.15vw,14px)', color:'#56608a', fontStyle:'italic', lineHeight:1.4 }}>{m.subtitle}</p>
             </div>
 
             <div style={{ background:`${c.c1}0c`, border:`1px solid ${c.c1}22`, borderLeft:`3px solid ${c.c1}`, borderRadius:'0 8px 8px 0', padding:'2% 3%' }}>
-              <div style={{ fontWeight:800, fontSize:'clamp(8px,0.85vw,10px)', color:c.c1, letterSpacing:'.08em', textTransform:'uppercase', marginBottom:'1.5%' }}>Objetivo</div>
-              <p style={{ fontSize:'clamp(9px,0.95vw,11.5px)', color:'#16203a', lineHeight:1.5 }}>{m.objective}</p>
+              <div style={{ fontWeight:800, fontSize:'clamp(11px,1.05vw,13px)', color:c.c1, letterSpacing:'.08em', textTransform:'uppercase', marginBottom:'1.5%' }}>Objetivo</div>
+              <p style={{ fontSize:'clamp(12px,1.15vw,14px)', color:'#16203a', lineHeight:1.5 }}>{m.objective}</p>
             </div>
 
             <div>
-              <div style={{ fontWeight:800, fontSize:'clamp(8px,0.85vw,10px)', color:'#4a5675', letterSpacing:'.08em', textTransform:'uppercase', marginBottom:'1.5%' }}>Competencias clave</div>
+              <div style={{ fontWeight:800, fontSize:'clamp(11px,1.05vw,13px)', color:'#4a5675', letterSpacing:'.08em', textTransform:'uppercase', marginBottom:'1.5%' }}>Competencias clave</div>
               <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1.5% 2%' }}>
                 {m.learn.slice(0,4).map((p, i) => (
                   <div key={i} style={{ display:'flex', gap:'4%', alignItems:'flex-start' }}>
-                    <span style={{ width:16, height:16, borderRadius:'50%', background:`linear-gradient(135deg,${c.c1},${c.c2})`, display:'grid', placeItems:'center', flexShrink:0, marginTop:2 }}>
-                      <Icon name="check" size={10} stroke={3} style={{ color:'#fff' }} />
+                    <span style={{ width:18, height:18, borderRadius:'50%', background:`linear-gradient(135deg,${c.c1},${c.c2})`, display:'grid', placeItems:'center', flexShrink:0, marginTop:2 }}>
+                      <Icon name="check" size={12} stroke={3} style={{ color:'#fff' }} />
                     </span>
-                    <span style={{ fontSize:'clamp(8px,0.88vw,10.5px)', color:'#16203a', lineHeight:1.4 }}>{p}</span>
+                    <span style={{ fontSize:'clamp(11px,1.05vw,13px)', color:'#16203a', lineHeight:1.4 }}>{p}</span>
                   </div>
                 ))}
               </div>
@@ -230,8 +230,8 @@ function ExecutivePresentation({ modules, onClose }) {
         </div>
 
         <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'1% 4%', borderTop:`1px solid ${c.c1}15`, flexShrink:0 }}>
-          <span style={{ fontSize:'clamp(7px,0.78vw,9.5px)', color:'#8a96b0', fontWeight:600 }}>Manual de Prácticas Profesionales ITM · MDE 001 V5</span>
-          <span style={{ fontSize:'clamp(7px,0.78vw,9.5px)', color:c.c1, fontWeight:700 }}>{idx} / {TOTAL - 1}</span>
+          <span style={{ fontSize:'clamp(10px,0.95vw,12px)', color:'#8a96b0', fontWeight:600 }}>Manual de Prácticas Profesionales ITM · MDE 001 V5</span>
+          <span style={{ fontSize:'clamp(10px,0.95vw,12px)', color:c.c1, fontWeight:700 }}>{idx} / {TOTAL - 1}</span>
         </div>
       </div>
     );
@@ -245,29 +245,29 @@ function ExecutivePresentation({ modules, onClose }) {
           <div style={{ position:'absolute', top:'-20%', left:'-10%', width:'50%', height:'100%', borderRadius:'50%', background:'rgba(0,160,183,0.08)' }} />
         </div>
         <div style={{ flex:1, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', padding:'4% 6%', position:'relative', textAlign:'center', gap:'3%' }}>
-          <div style={{ fontWeight:800, fontSize:'clamp(9px,1vw,12px)', color:'#56ACDE', letterSpacing:'.14em', textTransform:'uppercase' }}>Ruta de Aprendizaje</div>
-          <h2 style={{ color:'#fff', fontSize:'clamp(18px,2.8vw,36px)', fontWeight:900, lineHeight:1.1, maxWidth:600 }}>
+          <div style={{ fontWeight:800, fontSize:'clamp(12px,1.2vw,15px)', color:'#56ACDE', letterSpacing:'.14em', textTransform:'uppercase' }}>Ruta de Aprendizaje</div>
+          <h2 style={{ color:'#fff', fontSize:'clamp(22px,3vw,40px)', fontWeight:900, lineHeight:1.1, maxWidth:600 }}>
             ¡Ahora estás listo para comenzar tu ruta!
           </h2>
-          <p style={{ color:'rgba(255,255,255,0.7)', fontSize:'clamp(10px,1.1vw,13px)', maxWidth:520, lineHeight:1.65 }}>
+          <p style={{ color:'rgba(255,255,255,0.7)', fontSize:'clamp(13px,1.3vw,16px)', maxWidth:520, lineHeight:1.65 }}>
             Completa los 9 módulos, supera cada reto con mínimo <strong style={{ color:'#56ACDE' }}>80% de aprobación</strong>,
             gana tus insignias y obtén tu constancia de finalización.
           </p>
           <div style={{ display:'flex', gap:'clamp(5px,1vw,12px)', flexWrap:'wrap', justifyContent:'center' }}>
             {modules.map(m => (
-              <Badge key={m.id} module={m} size={Math.min(50, window.innerWidth * 0.04)} state="earned" showNumber={false} />
+              <Badge key={m.id} module={m} size={Math.min(58, window.innerWidth * 0.046)} state="earned" showNumber={false} />
             ))}
           </div>
           <div style={{ display:'flex', gap:'clamp(18px,2.8vw,44px)', flexWrap:'wrap', justifyContent:'center' }}>
             {[['10 000','XP máximo'],['9','Insignias'],['1','Constancia']].map(([n,l]) => (
               <div key={l} style={{ textAlign:'center' }}>
-                <div style={{ color:'#f4c84a', fontWeight:900, fontSize:'clamp(16px,2.2vw,26px)', lineHeight:1 }}>{n}</div>
-                <div style={{ color:'rgba(255,255,255,0.5)', fontWeight:600, fontSize:'clamp(8px,0.85vw,10px)', textTransform:'uppercase', letterSpacing:'.06em', marginTop:3 }}>{l}</div>
+                <div style={{ color:'#f4c84a', fontWeight:900, fontSize:'clamp(19px,2.5vw,30px)', lineHeight:1 }}>{n}</div>
+                <div style={{ color:'rgba(255,255,255,0.5)', fontWeight:600, fontSize:'clamp(11px,1.05vw,13px)', textTransform:'uppercase', letterSpacing:'.06em', marginTop:3 }}>{l}</div>
               </div>
             ))}
           </div>
         </div>
-        <div style={{ padding:'1.5% 5%', display:'flex', justifyContent:'space-between', borderTop:'1px solid rgba(255,255,255,0.1)', color:'rgba(255,255,255,0.35)', fontSize:'clamp(8px,0.78vw,10px)', fontWeight:600 }}>
+        <div style={{ padding:'1.5% 5%', display:'flex', justifyContent:'space-between', borderTop:'1px solid rgba(255,255,255,0.1)', color:'rgba(255,255,255,0.35)', fontSize:'clamp(10px,0.95vw,12px)', fontWeight:600 }}>
           <span>Oficina de Prácticas Profesionales ITM</span>
           <span>{TOTAL - 1} / {TOTAL - 1}</span>
         </div>
@@ -287,7 +287,7 @@ function ExecutivePresentation({ modules, onClose }) {
     }}>
       {/* Slide */}
       <div className="exec-pres-slide-wrap" style={{
-        width:'min(97vw,1180px)',
+        width:'min(98vw,1440px)',
         aspectRatio:'16/9',
         position:'relative',
         borderRadius:10,

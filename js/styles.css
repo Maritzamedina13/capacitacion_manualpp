@@ -167,24 +167,23 @@ input { font-family: inherit; }
 }
 
 /* ============================================================
-   RESPONSIVE DESIGN
-   Breakpoints: 1024 | 768 | 640 | 480 | 360
+   RESPONSIVE DESIGN — Cobertura completa
+   Breakpoints: 1024 | 900 | 768 | 640 | 480 | 360
    ============================================================ */
 
-/* ---- Tablet (≤ 1024px) ---- */
+/* ===== Tablet grande (≤ 1024px) ===== */
 @media (max-width: 1024px) {
   .btn { padding: 13px 22px; font-size: 15px; }
 }
 
-/* ---- Mobile grande (≤ 768px) ---- */
-@media (max-width: 768px) {
-  /* Mapa */
+/* ===== Tablet (≤ 900px) ===== */
+@media (max-width: 900px) {
+  /* Mapa: header en grid 3 columnas → columna central arriba */
   .map-header {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     grid-template-rows: auto auto !important;
-    gap: 10px 16px !important;
-    align-items: center !important;
+    gap: 8px 12px !important;
   }
   .map-logo-center {
     position: static !important;
@@ -192,8 +191,12 @@ input { font-family: inherit; }
     grid-column: 1 / -1 !important;
     justify-self: center !important;
   }
-  .map-user { justify-self: end; }
-  .map-xp   { justify-self: start; }
+  .map-user { justify-self: end !important; }
+  .map-xp   { justify-self: start !important; }
+
+  /* Intro módulo: una columna */
+  .intro-grid { grid-template-columns: 1fr !important; }
+  .intro-badge-col { display: none !important; }
 
   /* Certificado */
   .cert-card {
@@ -202,63 +205,131 @@ input { font-family: inherit; }
     min-height: 0 !important;
     overflow-y: auto !important;
   }
-  .cert-badges {
-    gap: 5px !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-  }
-
-  /* Módulo intro — una columna */
-  .intro-grid { grid-template-columns: 1fr !important; }
+  .cert-badges { gap: 6px !important; flex-wrap: wrap !important; justify-content: center !important; }
 }
 
-/* ---- Mobile (≤ 640px) ---- */
-@media (max-width: 640px) {
-  /* Bienvenida */
-  .welcome-grid  { grid-template-columns: 1fr !important; }
+/* ===== Mobile grande (≤ 768px) ===== */
+@media (max-width: 768px) {
+  /* Welcome: columna única */
+  .welcome-grid { grid-template-columns: 1fr !important; }
   .welcome-badges { display: none !important; }
-  .welcome-stats {
-    flex-direction: row !important;
-    overflow-x: auto !important;
-  }
 
-  /* Form de nombre: botón debajo del input */
+  /* Certificado: sin ratio fijo */
+  .cert-card { aspect-ratio: unset !important; height: auto !important; overflow: visible !important; }
+  .cert-wrapper { padding: 12px !important; }
+  .cert-badges { flex-wrap: wrap !important; gap: 5px !important; }
+
+  /* Mapa: pie de insignias */
+  .map-badge-shelf { flex-direction: column !important; gap: 8px !important; align-items: flex-start !important; }
+}
+
+/* ===== Mobile (≤ 640px) ===== */
+@media (max-width: 640px) {
+  /* ── Botones ── */
+  .btn { font-size: 14px !important; padding: 12px 16px !important; gap: 7px !important; }
+
+  /* ── Cards ── */
+  .card { padding: 18px 16px !important; border-radius: 14px !important; }
+
+  /* ── Welcome ── */
+  /* Tarjeta blanca */
+  .welcome-card {
+    border-radius: 16px !important;
+    padding: 20px 18px !important;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.28) !important;
+  }
+  /* Estadísticas */
+  .welcome-stats { overflow-x: auto !important; }
+  /* Form: botón completo debajo del input */
   .welcome-form-row {
     flex-direction: column !important;
-    gap: 10px !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    gap: 8px !important;
+  }
+  .welcome-form-row input {
+    width: 100% !important;
+    background: #f8faff !important;
+    border: 1.5px solid #c8dcf0 !important;
+    border-radius: 11px !important;
+    padding: 13px 16px !important;
+    color: #16203a !important;
   }
   .welcome-form-row .btn {
     width: 100% !important;
-    border-radius: 14px !important;
+    border-radius: 11px !important;
     justify-content: center !important;
   }
+  /* Botones de acción: ancho completo */
+  .welcome-action-btn { width: 100% !important; justify-content: flex-start !important; }
 
-  /* Mapa: insignias en pie con scroll */
-  .map-badge-shelf {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 10px !important;
-  }
-  .map-badge-shelf-icons { overflow-x: auto; padding-bottom: 4px; }
-
-  /* Botones globales */
-  .btn { font-size: 14px !important; padding: 12px 18px !important; gap: 7px !important; }
-  .btn-block { width: 100% !important; justify-content: center !important; }
-
-  /* Cards: menos padding */
-  .card { padding: 20px 18px !important; }
-}
-
-/* ---- Teléfono pequeño (≤ 480px) ---- */
-@media (max-width: 480px) {
-  /* Header del mapa: logo arriba centrado, luego XP y usuario */
+  /* ── Mapa ── */
   .map-header {
     grid-template-columns: 1fr 1fr !important;
+    padding: 10px 14px !important;
   }
 
-  /* Certificado: elimina margen lateral */
-  .cert-wrapper { padding: 10px !important; }
-  .cert-card { margin: 0 !important; border-radius: 8px !important; }
+  /* ── Módulo contenido ── */
+  .module-points-grid { grid-template-columns: 1fr !important; }
+
+  /* ── Quiz ── */
+  /* Opción múltiple: font más pequeño */
+  .quiz-option { font-size: 14px !important; padding: 13px 14px !important; }
+  /* Match: stack columnas */
+  .quiz-match-grid { grid-template-columns: 1fr !important; }
+  /* Order: items más compactos */
+  .quiz-order-item { font-size: 13px !important; padding: 10px 12px !important; }
+
+  /* ── Certificado ── */
+  .cert-card { margin: 0 !important; border-radius: 10px !important; }
+  .cert-main { padding: 18px 16px !important; }
+  .cert-badges .badge-wrap { transform: scale(0.88); }
+
+  /* ── Presentación ── */
+  .exec-pres-slide-wrap { aspect-ratio: unset !important; height: min(72vw, 380px) !important; }
+  .exec-cover { grid-template-columns: 1fr !important; }
+  .exec-cover-right { display: none !important; }
+  .exec-chapter-body { grid-template-columns: 1fr !important; }
+  .exec-badge-col { display: none !important; }
+}
+
+/* ===== Teléfono pequeño (≤ 480px) ===== */
+@media (max-width: 480px) {
+  .btn { font-size: 13px !important; padding: 11px 14px !important; }
+  .chip { font-size: 11px !important; padding: 5px 10px !important; }
+
+  /* Welcome: padding mínimo */
+  .welcome-card { padding: 16px 14px !important; }
+
+  /* Mapa: scroll vertical */
+  .map-main { overflow-y: auto !important; -webkit-overflow-scrolling: touch !important; }
+
+  /* Módulo intro: sin badge lateral */
+  .intro-badge-col { display: none !important; }
+
+  /* Certificado: badges muy pequeños */
+  .cert-badges { gap: 4px !important; }
+
+  /* Presentación: solo iconos en controles */
+  .exec-pres-dots { display: none !important; }
+  .exec-ctrl-label { display: none !important; }
+  .exec-hint { display: none !important; }
+  .exec-pres-slide-wrap { height: min(78vw, 320px) !important; }
+}
+
+/* ===== Pantalla muy pequeña (≤ 360px) ===== */
+@media (max-width: 360px) {
+  .btn { font-size: 12px !important; padding: 10px 12px !important; }
+  .chip { font-size: 10px !important; padding: 4px 9px !important; }
+  .welcome-card { padding: 14px 12px !important; }
+}
+
+/* ===== Touch devices: targets mínimos 44px ===== */
+@media (hover: none) and (pointer: coarse) {
+  .btn { min-height: 44px !important; }
+  input, select { min-height: 44px !important; font-size: 16px !important; }
+}
 
   /* Insignia del certificado: más pequeña */
   .cert-badges .badge-wrap { transform: scale(0.9); }

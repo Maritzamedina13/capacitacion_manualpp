@@ -3,17 +3,17 @@
    ============================================================ */
 const { useState, useEffect } = React;
 const NODE_POS = [
-  { x: 14, y: 8  },
-  { x: 50, y: 16 },
-  { x: 86, y: 24 },
-  { x: 86, y: 40 },
-  { x: 50, y: 48 },
-  { x: 14, y: 56 },
-  { x: 14, y: 72 },
-  { x: 50, y: 80 },
-  { x: 86, y: 88 },
+  { x: 14, y: 5  },
+  { x: 50, y: 13 },
+  { x: 86, y: 21 },
+  { x: 86, y: 42 },
+  { x: 50, y: 50 },
+  { x: 14, y: 58 },
+  { x: 14, y: 79 },
+  { x: 50, y: 87 },
+  { x: 86, y: 95 },
 ];
-const CERT_POS = { x: 50, y: 96 };
+const CERT_POS = { x: 50, y: 99 };
 
 function buildPath(points) {
   // smooth-ish curve through points in 0-100 space
@@ -134,7 +134,7 @@ function LevelMap({ modules, progress, name, xp, onSelectModule, onCertificate, 
 
       {/* Mapa */}
       <main style={{ position: 'relative', flex: 1, padding: 'clamp(56px,7vw,72px) clamp(8px,4vw,40px) 16px', overflow: 'visible' }}>
-        <div style={{ position: 'relative', width: '100%', maxWidth: 1080, margin: '0 auto', height: 'clamp(600px,80vh,920px)', overflow: 'visible' }}>
+        <div style={{ position: 'relative', width: '100%', maxWidth: 1080, margin: '0 auto', height: 'clamp(740px,90vh,1080px)', overflow: 'visible' }}>
           {/* camino */}
           <svg viewBox="0 0 100 100" preserveAspectRatio="none" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', zIndex: 1 }}>
             <path d={buildPath(pathPoints)} fill="none" stroke="rgba(255,255,255,.13)" strokeWidth="1.6" strokeLinecap="round" />

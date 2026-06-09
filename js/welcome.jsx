@@ -68,7 +68,7 @@ function Welcome({ modules, onStart, savedName, hasProgress, onContinue, complet
         >
 
           {/* ── Columna izquierda: PANEL BLANCO sobre fondo azul ── */}
-          <div style={{
+          <div className="welcome-card" style={{
             background: '#ffffff',
             borderRadius: 24,
             padding: 'clamp(24px,3.5vw,48px)',
@@ -182,6 +182,7 @@ function Welcome({ modules, onStart, savedName, hasProgress, onContinue, complet
               {/* Botón presentación */}
               <button
                 onClick={() => setShowPres(true)}
+                className="welcome-action-btn"
                 style={{
                   marginTop: 12, display: 'flex', alignItems: 'center', gap: 8, width: '100%',
                   background: 'linear-gradient(135deg,#102D69,#0e6a8e)',
