@@ -127,9 +127,7 @@ window.ITM_QUIZZES = {
       prompt: "Relaciona cada rol con su función principal.",
       pairs: [
         { l: "Monitor", r: "Orientación pedagógica del practicante" },
-        { l: "Tutor", r: "Guía del aprendiz en lo productivo" },
-        { l: "Docente enlace", r: "Vínculo entre facultad y Oficina de Prácticas" },
-        { l: "Asesor técnico", r: "Gestiona aspectos técnicos del proceso en la facultad" }
+        { l: "Tutor", r: "Guía del aprendiz en lo productivo" }
       ],
       explain: "Cada actor desempeña un rol específico y complementario en el proceso de prácticas del ITM."
     },
@@ -190,7 +188,7 @@ window.ITM_QUIZZES = {
       prompt: "¿Cuántos niveles tiene la estructura orgánica de la Oficina de Prácticas Profesionales ITM?",
       options: ["5 niveles", "7 niveles", "9 niveles", "11 niveles"],
       answer: 2,
-      explain: "La estructura orgánica consta de 9 niveles: desde la Vicerrectoría de Docencia hasta el Docente enlace de la facultad."
+      explain: "La estructura orgánica consta de 9 niveles que articulan desde la Vicerrectoría de Docencia hasta los niveles de apoyo administrativo."
     },
     {
       type: "match",
@@ -198,8 +196,7 @@ window.ITM_QUIZZES = {
       pairs: [
         { l: "Vicerrectoría de Docencia", r: "Nivel superior de dirección académica" },
         { l: "Coordinación de Prácticas", r: "Nivel de operación directa" },
-        { l: "Auxiliar de atención", r: "Nivel de apoyo al usuario" },
-        { l: "Docente enlace", r: "Apoyo de articulación con la facultad" }
+        { l: "Auxiliar de atención", r: "Nivel de apoyo al usuario" }
       ],
       explain: "Cada nivel cumple una función específica dentro de la estructura orgánica de la Oficina de Prácticas."
     },
@@ -273,7 +270,7 @@ window.ITM_QUIZZES = {
       prompt: "¿Qué producto puede entregar un estudiante de programa profesional en prácticas profesionales?",
       options: [
         "Solo el registro de asistencia diaria",
-        "Plan de Prácticas o propuesta de mejoramiento/optimización/innovación",
+        "Entrega del Plan de Prácticas y Sistematización",
         "Únicamente un examen de conocimientos",
         "Un contrato firmado con el SENA"
       ],
@@ -360,17 +357,6 @@ window.ITM_QUIZZES = {
       answer: 2,
       explain: "Para estudiantes universitarios en contrato de aprendizaje, el apoyo de sostenimiento mínimo es 1 SMLMV, con independencia de la modalidad."
     },
-    {
-      type: "match",
-      prompt: "Relaciona el tipo de contratación con su característica principal.",
-      pairs: [
-        { l: "Contrato de aprendizaje", r: "Contrato laboral especial — seguridad social integral" },
-        { l: "Vinculación formativa", r: "No constituye relación laboral — ARL obligatoria" },
-        { l: "Acuerdo de voluntades", r: "Figura tripartita para entidades privadas" },
-        { l: "Acto administrativo", r: "Figura unilateral para entidades públicas" }
-      ],
-      explain: "Cada mecanismo de vinculación tiene un régimen jurídico y unas obligaciones distintas para las partes."
-    }
   ],
 
   /* ════════════════ MÓDULO 6 — Cap. VI ════════════════ */
@@ -398,7 +384,7 @@ window.ITM_QUIZZES = {
       prompt: "Relaciona cada parte con uno de sus deberes principales.",
       pairs: [
         { l: "Oficina de Prácticas", r: "Designar el monitor antes de iniciar las prácticas" },
-        { l: "Empresa / escenario", r: "Designar un tutor y asumir la ARL (riesgo 3)" },
+        { l: "Empresa / escenario", r: "Designar un tutor y asumir la ARL" },
         { l: "Practicante", r: "No iniciar prácticas sin la carta de inicio" },
         { l: "Monitor", r: "Elaborar y aprobar el Plan de Prácticas con el tutor" }
       ],
@@ -443,9 +429,9 @@ window.ITM_QUIZZES = {
     },
     {
       type: "tf",
-      prompt: "En la vinculación formativa, la empresa debe asumir el pago de la ARL por riesgo 3 del practicante.",
+      prompt: "En la vinculación formativa, la empresa debe asumir el pago de la ARL del practicante.",
       answer: true,
-      explain: "Verdadero. Al encontrarse el estudiante en etapa productiva y expuesto a riesgos, la empresa debe asumir la ARL por riesgo 3 desde la vinculación."
+      explain: "Verdadero. Al encontrarse el estudiante en etapa productiva y expuesto a riesgos, la empresa debe asumir la ARL desde la vinculación."
     }
   ],
 
@@ -457,24 +443,6 @@ window.ITM_QUIZZES = {
       options: ["Una reunión", "Dos reuniones", "Tres reuniones", "Cuatro reuniones"],
       answer: 1,
       explain: "El proceso de articulación contempla DOS reuniones semestrales con cada facultad para asegurar la coordinación y el progreso continuo."
-    },
-    {
-      type: "tf",
-      prompt: "El docente enlace de la facultad está presente en todas las facultades del ITM.",
-      answer: false,
-      explain: "Falso. Esta figura no está en todas las facultades; el manual señala que está específicamente en la Facultad de Ciencias Exactas y Aplicadas y la de Artes y Humanidades."
-    },
-    {
-      type: "mcq",
-      prompt: "¿Qué figura adicional apoya el proceso de articulación con monitores en algunas facultades?",
-      options: [
-        "El rector del ITM",
-        "El docente enlace designado por el Comité Curricular",
-        "El Ministerio de Educación",
-        "El representante de bienestar universitario"
-      ],
-      answer: 1,
-      explain: "El docente enlace, designado por el Comité Curricular de la facultad, sirve de vínculo entre la Oficina de Prácticas y la facultad."
     },
     {
       type: "tf",

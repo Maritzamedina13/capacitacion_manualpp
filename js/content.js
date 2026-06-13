@@ -112,15 +112,6 @@ window.ITM_MODULES = [
         ]
       },
       {
-        title: "Otros roles de apoyo",
-        lead: "Figuras adicionales que fortalecen la articulación entre la facultad y la Oficina de Prácticas Profesionales.",
-        points: [
-          { h: "Asesor técnico", t: "Docente de la facultad que gestiona los aspectos técnicos del proceso (no está en todas las facultades)." },
-          { h: "Docente enlace", t: "Vínculo entre la Oficina de Prácticas y la facultad; designado por cada facultad para cada programa." },
-          { h: "Coordinador de prácticas", t: "Responsable de la gestión, seguimiento y evaluación de las prácticas en la institución." }
-        ]
-      },
-      {
         title: "Empresa patrocinadora vs. Escenario de prácticas",
         lead: "Una distinción fundamental: la misma entidad puede tener ambas denominaciones según el mecanismo contractual que use.",
         points: [
@@ -178,8 +169,8 @@ window.ITM_MODULES = [
         title: "Cinco objetivos específicos",
         lead: "Cinco propósitos concretos orientan el proceso de prácticas profesionales del ITM.",
         points: [
-          { h: "1. Acercamiento", t: "Promover el vínculo universidad–empresa mediante convenios y la identificación de espacios pertinentes." },
-          { h: "2. Competencias", t: "Facilitar el desarrollo de competencias técnicas y humanas mediante inmersión activa en el campo empresarial." },
+          { h: "1. Relacionamiento", t: "Promover el vínculo universidad–empresa mediante convenios y la identificación de espacios pertinentes." },
+          { h: "2. Competencias", t: "Facilitar el desarrollo de competencias y de las hard skills (habilidades duras) en áreas STEM (Ciencia, Tecnología, Ingeniería y Matemáticas) mediante la inmersión activa en el entorno empresarial." },
           { h: "3. Fortalecer programas", t: "Conectar la formación académica con el medio empresarial y las exigencias del mundo real." },
           { h: "4. Investigación", t: "Estimular la cultura de la investigación articulando las prácticas a las líneas de investigación de la facultad." },
           { h: "5. Proyección social", t: "Fomentar el desarrollo integral e interdisciplinario para abordar problemáticas sociales y de comunidades vulnerables." }
@@ -200,7 +191,7 @@ window.ITM_MODULES = [
         points: [
           { h: "Dirección académica", t: "Vicerrectoría de Docencia, Consejo de Facultad, Comité Curricular y Comité de Modalidad de Grado." },
           { h: "Operación", t: "Coordinación de Prácticas y Monitores de prácticas (designados desde la Vicerrectoría)." },
-          { h: "Apoyo administrativo", t: "Auxiliar de atención, Auxiliar de innovación y tecnología, y Docente enlace de la facultad." }
+          { h: "Apoyo administrativo", t: "Auxiliar de atención y Auxiliar de innovación y tecnología." }
         ],
         note: "La Unidad Administrativa está integrada por el Coordinador de área, Gestión Humana, el Monitor y los auxiliares."
       }
@@ -230,7 +221,7 @@ window.ITM_MODULES = [
         lead: "El estudiante aplica los conocimientos teóricos y prácticos de su formación con especial énfasis en el aprendizaje y entrenamiento laboral.",
         points: [
           { h: "Duración", t: "Depende del registro de cada programa ante el Ministerio de Trabajo y el SENA, y del diseño curricular del programa." },
-          { h: "Producto tecnología", t: "Entrega del Plan de Prácticas en el formato definido por la facultad." },
+          { h: "Producto tecnología", t: "Entrega del Plan de Prácticas y trabajo de sistematización." },
           { h: "Producto profesional", t: "Plan de Prácticas o propuesta de mejoramiento, optimización o innovación en el área donde se desarrolla." },
           { h: "Acompañamiento", t: "El monitor asegura mínimo cuatro encuentros (presenciales o virtuales), además de los del Plan de Prácticas." }
         ]
@@ -386,7 +377,7 @@ window.ITM_MODULES = [
         title: "Obligaciones del monitor",
         lead: "El monitor ejerce el acompañamiento pedagógico y es el principal enlace institucional con el practicante.",
         points: [
-          { h: "Plan de Prácticas", t: "Elaborar, revisar y aprobar en conjunto con el tutor el Plan de Prácticas del estudiante." },
+          { h: "Plan de Prácticas", t: "Elaborar, revisar, acompañar y aprobar en conjunto con el tutor el Plan de Prácticas del estudiante." },
           { h: "Avalar informes", t: "Avalar los informes periódicos presentados por el practicante en el cronograma definido." },
           { h: "Reportar novedades", t: "Informar a la empresa cualquier situación que afecte el normal desarrollo de las prácticas." },
           { h: "Protección del practicante", t: "Usar los mecanismos institucionales para resolver amenazas o vulneraciones a los derechos del practicante." }
@@ -397,7 +388,7 @@ window.ITM_MODULES = [
         lead: "Cumplen un rol formativo clave ofreciendo un entorno profesional adecuado para el aprendizaje del practicante.",
         points: [
           { h: "Designar tutor", t: "Contar con un tutor que lidere, evalúe y oriente el proceso del estudiante en la empresa." },
-          { h: "Seguridad social", t: "Gestionar la afiliación según la modalidad. En vinculación formativa: asumir la ARL riesgo 3." },
+          { h: "Seguridad social", t: "Gestionar la afiliación según la modalidad. En vinculación formativa: asumir la ARL." },
           { h: "Apoyo de sostenimiento", t: "En contrato de aprendizaje universitario: mínimo 1 SMLMV. Tecnólogos: 75% lectiva y 100% práctica." },
           { h: "Inducción completa", t: "Realizar inducción al practicante y entregarle copia del reglamento interno de trabajo." }
         ]
@@ -438,7 +429,6 @@ window.ITM_MODULES = [
     objective: "Comprender el proceso de articulación entre la Oficina de Prácticas y las facultades, sus etapas clave y mecanismos de seguimiento.",
     learn: [
       "Identificar las etapas clave del proceso de articulación con las facultades.",
-      "Reconocer el papel del docente enlace y el asesor técnico.",
       "Conocer los mecanismos de seguimiento e indicadores del proceso.",
       "Saber la frecuencia y propósito de las reuniones semestrales."
     ],
@@ -459,15 +449,6 @@ window.ITM_MODULES = [
           { h: "Participación en espacios", t: "Coordinación con empresas patrocinadoras y formación integral a monitores para fortalecer su rol." },
           { h: "Capacitación y lineamientos", t: "Capacitación a todos los involucrados sobre normativa vigente y roles en el proceso." },
           { h: "Indicadores y planes", t: "Definición de indicadores mediante encuestas y creación de planes de mejoramiento conjuntos." }
-        ]
-      },
-      {
-        title: "El docente enlace de la facultad",
-        lead: "Para algunas facultades existe la figura adicional del docente enlace, designado por el Comité Curricular.",
-        points: [
-          { h: "Facultades con esta figura", t: "Facultad de Ciencias Exactas y Aplicadas y Facultad de Artes y Humanidades (no en todas las facultades)." },
-          { h: "Su función", t: "Servir de vínculo entre la Oficina de Prácticas y la facultad, garantizando planificación y mejora continua." },
-          { h: "Designación", t: "Es designado por el Comité Curricular o la instancia que cumpla esa función en cada facultad." }
         ]
       },
       {
