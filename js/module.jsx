@@ -3,7 +3,7 @@
    ============================================================ */
 const { useState } = React;
 const PASS_PCT = 80;
-const XP_PER_Q  = 139;   // 8 preguntas × 139 = 1 112 XP/módulo · 9 módulos ≈ 10 000 XP
+const MODULE_MAX_XP = { 1:116, 2:116, 3:116, 4:116, 5:101, 6:116, 7:87, 8:116, 9:116 }; // total 1000 XP
 
 function ModuleFlow({ module, quiz, alreadyDone, onComplete, onExit }) {
   const c = module.colors;
@@ -72,7 +72,7 @@ function ModuleFlow({ module, quiz, alreadyDone, onComplete, onExit }) {
                 <button className="btn btn-primary" style={{ '--m-1': c.c1, '--m-2': c.c2, fontSize: 16 }} onClick={() => { setSlide(0); setPhase('content'); }}>
                   <Icon name="play" size={16} /> {alreadyDone ? 'Repasar módulo' : 'Empezar a aprender'}
                 </button>
-                <span style={{ fontSize: 13, color: 'var(--ink-soft)', fontWeight: 600 }}>{module.content.length} temas · {total} retos · meta {PASS_PCT}% · máx {total * XP_PER_Q} XP</span>
+                <span style={{ fontSize: 13, color: 'var(--ink-soft)', fontWeight: 600 }}>{module.content.length} temas · {total} retos · meta {PASS_PCT}% · máx {MODULE_MAX_XP[module.id]} XP</span>
               </div>
             </div>
           </div>
@@ -183,9 +183,9 @@ function ModuleFlow({ module, quiz, alreadyDone, onComplete, onExit }) {
               <div style={{ display: 'flex', justifyContent: 'center', gap: 18, margin: '22px 0' }}>
                 <div><div style={{ fontSize: 26, fontWeight: 900, color: c.c1 }}>{correctCount}/{total}</div><div style={{ fontSize: 12, color: 'var(--ink-soft)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.05em' }}>Aciertos</div></div>
                 <div style={{ width: 1, background: 'var(--line)' }} />
-                <div><div style={{ fontSize: 26, fontWeight: 900, color: 'var(--gold-deep)' }}>+{correctCount * XP_PER_Q}</div><div style={{ fontSize: 12, color: 'var(--ink-soft)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.05em' }}>XP ganados · máx {quiz.length * XP_PER_Q}</div></div>
+                <div><div style={{ fontSize: 26, fontWeight: 900, color: 'var(--gold-deep)' }}>+{Math.round(MODULE_MAX_XP[module.id] * correctCount / total)}</div><div style={{ fontSize: 12, color: 'var(--ink-soft)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.05em' }}>XP ganados · máx {MODULE_MAX_XP[module.id]}</div></div>
               </div>
-              <button className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }} onClick={() => onComplete(scorePct, correctCount * XP_PER_Q)}>
+              <button className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }} onClick={() => onComplete(scorePct, Math.round(MODULE_MAX_XP[module.id] * correctCount / total))}>
                 Continuar <Icon name="arrowR" size={17} />
               </button>
             </>
